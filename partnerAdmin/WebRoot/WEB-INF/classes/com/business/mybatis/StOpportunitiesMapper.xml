@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StOpportunitiesMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StOpportunities" >
+	<result column="id" property="id"/>
+	<result column="customercompname" property="customercompname"/>
+	<result column="customercompsize" property="customercompsize"/>
+	<result column="customercompsizeid" property="customercompsizeid"/>
+	<result column="customername" property="customername"/>
+	<result column="customerposition" property="customerposition"/>
+	<result column="customertel" property="customertel"/>
+	<result column="customeremail" property="customeremail"/>
+	<result column="customercity" property="customercity"/>
+	<result column="requirementstype" property="requirementstype"/>
+	<result column="requirementsdescribe" property="requirementsdescribe"/>
+	<result column="recommenddescribe" property="recommenddescribe"/>
+	<result column="recommendfile" property="recommendfile"/>
+	<result column="recommendtime" property="recommendtime"/>
+
+	<result column="issuserid" property="issuserid"/>
+
+	<result column="status" property="status"/>
+</resultMap>
+       
+<!-- st_opportunities table all fields -->
+<sql id="Base_Column_List" >
+
+	 id,customercompname,customercompsize,customercompsizeid,customername,customerposition,customertel,customeremail,customercity,requirementstype,requirementsdescribe,recommenddescribe,recommendfile,recommendtime,issuserid,status
+
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="customercompname != null and customercompname != ''" >
+	    and customercompname =  #{customercompname}
+	</if>
+		<if test="customercompsizeid != null and customercompsizeid != ''" >
+	    and customercompsizeid =  #{customercompsizeid}
+	</if>
+	 	<if test="customercompsize != null and customercompsize != ''" >
+	    and customercompsize =  #{customercompsize}
+	</if>
+	 	<if test="customername != null and customername != ''" >
+	    and customername =  #{customername}
+	</if>
+	 	<if test="customerposition != null and customerposition != ''" >
+	    and customerposition =  #{customerposition}
+	</if>
+	 	<if test="customertel != null and customertel != ''" >
+	    and customertel =  #{customertel}
+	</if>
+	 	<if test="customeremail != null and customeremail != ''" >
+	    and customeremail =  #{customeremail}
+	</if>
+	 	<if test="customercity != null and customercity != ''" >
+	    and customercity =  #{customercity}
+	</if>
+	 	<if test="requirementstype != null and requirementstype != ''" >
+	    and requirementstype =  #{requirementstype}
+	</if>
+	 	<if test="requirementsdescribe != null and requirementsdescribe != ''" >
+	    and requirementsdescribe =  #{requirementsdescribe}
+	</if>
+	 	<if test="recommenddescribe != null and recommenddescribe != ''" >
+	    and recommenddescribe =  #{recommenddescribe}
+	</if>
+	 	<if test="recommendfile != null and recommendfile != ''" >
+	    and recommendfile =  #{recommendfile}
+	</if>
+	<if test="recommendtime != null" >
+	    and recommendtime =  #{recommendtime}
+	</if>
+
+	<if test="issuserid != null" >
+	    and issuserid =  #{issuserid}
+	</if>
+
+	<if test="status != null" >
+	    and status =  #{status}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+
+  insert into st_opportunities(id,customercompname,customercompsizeid,customercompsize,customername,customerposition,customertel,customeremail,customercity,requirementstype,requirementsdescribe,recommenddescribe,recommendfile,recommendtime,issuserid,status)
+ select #{id},#{customercompname},#{customercompsizeid},compsize,#{customername},#{customerposition},#{customertel},#{customeremail},#{customercity},#{requirementstype},#{requirementsdescribe},#{recommenddescribe},#{recommendfile},now(),#{issuserid},0
+ from st_opportunities_dictionary_scale where id=#{customercompsizeid}
+
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+
+  update st_opportunities set customercompname=#{customercompname},customercompsizeid=#{customercompsizeid},customercompsize=#{customercompsize},customername=#{customername},customerposition=#{customerposition},customertel=#{customertel},customeremail=#{customeremail},customercity=#{customercity},requirementstype=#{requirementstype},requirementsdescribe=#{requirementsdescribe},recommenddescribe=#{recommenddescribe},recommendfile=#{recommendfile},recommendtime=#{recommendtime},issuserid=#{issuserid},status=#{status} where id=#{id}
+
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_opportunities set 
+	<trim  suffixOverrides="," >
+	<if test="customercompname != null  and customercompname != '' ">
+		customercompname=#{customercompname},
+	</if>
+	<if test="customercompsizeid != null  and customercompsizeid != '' ">
+		customercompsizeid=#{customercompsizeid},
+	</if>
+	<if test="customercompsize != null  and customercompsize != '' ">
+		customercompsize=#{customercompsize},
+	</if>
+	<if test="customername != null  and customername != '' ">
+		customername=#{customername},
+	</if>
+	<if test="customerposition != null  and customerposition != '' ">
+		customerposition=#{customerposition},
+	</if>
+	<if test="customertel != null  and customertel != '' ">
+		customertel=#{customertel},
+	</if>
+	<if test="customeremail != null  and customeremail != '' ">
+		customeremail=#{customeremail},
+	</if>
+	<if test="customercity != null  and customercity != '' ">
+		customercity=#{customercity},
+	</if>
+	<if test="requirementstype != null  and requirementstype != '' ">
+		requirementstype=#{requirementstype},
+	</if>
+	<if test="requirementsdescribe != null  and requirementsdescribe != '' ">
+		requirementsdescribe=#{requirementsdescribe},
+	</if>
+	<if test="recommenddescribe != null  and recommenddescribe != '' ">
+		recommenddescribe=#{recommenddescribe},
+	</if>
+	<if test="recommendfile != null  and recommendfile != '' ">
+		recommendfile=#{recommendfile},
+	</if>
+	<if test="recommendtime != null  ">
+		recommendtime=#{recommendtime},
+	</if>
+
+	<if test="issuserid != null  ">
+		issuserid=#{issuserid},
+	</if>
+
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_opportunities where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 商机表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_opportunities where id = #{id}
+</select>
+
+<!-- 商机表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_opportunities 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询商机表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_opportunities 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<!-- 商机详情 -->
+<select id="queryByOppid" resultType="com.business.bean.StOpportunities" parameterType="Object">
+	select 
+		so.customercompname,
+		so.customercompsize,
+		so.customername,
+		so.customertel,
+		so.customerposition,
+		so.requirementstype,
+		so.recommenddescribe,
+		swu.companyname,
+		so.recommendtime,
+		sor.checkstatus,
+		sor.paystatus,
+		sor.paynum
+	FROM st_opportunities so,st_opportunities_recommend sor,st_web_user swu
+	WHERE so.id = #{oppid}
+		AND sor.oppid = #{oppid}
+		AND swu.id = sor.userid
+
+</select>
+
+<!-- 移动端我的商机 -->
+<select id="queryOpp" resultType="com.business.bean.StOpportunities" parameterType="Object">
+	SELECT 
+		so.id,
+		so.requirementstype,
+		so.recommendtime,
+		sor.checkstatus,
+		sor.paystatus,
+		sor.personevaluate,
+		swu.companyname
+	FROM st_opportunities so,st_opportunities_recommend sor,st_web_user swu
+	WHERE so.issuserid = #{userid}
+		AND sor.oppid = so.id
+		AND swu.id = sor.userid
+
+</select>
+  	
+</mapper>   

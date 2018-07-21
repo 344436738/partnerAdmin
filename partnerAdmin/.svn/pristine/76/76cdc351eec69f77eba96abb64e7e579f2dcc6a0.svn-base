@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StOpportunitiesDictionaryScaleMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StOpportunitiesDictionaryScale" >
+	<result column="id" property="id"/>
+	<result column="levelname" property="levelname"/>
+	<result column="compsize" property="compsize"/>
+</resultMap>
+       
+<!-- st_opportunities_dictionary_scale table all fields -->
+<sql id="Base_Column_List" >
+	 id,levelname,compsize
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="levelname != null and levelname != ''" >
+	    and levelname =  #{levelname}
+	</if>
+	 	<if test="compsize != null and compsize != ''" >
+	    and compsize =  #{compsize}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into st_opportunities_dictionary_scale(id,levelname,compsize)
+ values(#{id},#{levelname},#{compsize})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_opportunities_dictionary_scale set levelname=#{levelname},compsize=#{compsize} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_opportunities_dictionary_scale set 
+	<trim  suffixOverrides="," >
+	<if test="levelname != null  and levelname != '' ">
+		levelname=#{levelname},
+	</if>
+	<if test="compsize != null  and compsize != '' ">
+		compsize=#{compsize},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_opportunities_dictionary_scale where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 企业规模字典表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_opportunities_dictionary_scale where id = #{id}
+</select>
+
+<!-- 企业规模字典表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_opportunities_dictionary_scale 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询企业规模字典表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_opportunities_dictionary_scale 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<select id="queryForShow" resultMap="BaseResultMap" parameterType="Object">
+
+SELECT sods.compsize,sods.id as scaleid,
+(SELECT sodo.cashback FROM st_opportunities_dictionary_oppgrade sodo 
+WHERE sodo.userid = #{userid} AND sodo.scaleid=sods.id) AS cashback,
+(SELECT sodo.id FROM st_opportunities_dictionary_oppgrade sodo 
+WHERE sodo.userid = #{userid} AND sodo.scaleid=sods.id) AS id
+
+FROM st_opportunities_dictionary_scale sods
+
+</select>  	
+  	
+</mapper>   

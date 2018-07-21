@@ -1,0 +1,9 @@
+package com.business.model;
+import com.base.model.BaseModel;
+
+public class StResumeActivitiesModel extends BaseModel {
+	
+
+		private Integer id;//   	private String title;//   	private String homeimg;//   	private java.util.Date startdate;//   	private java.util.Date enddate;//   	private Integer uploadleast;//   	private String intro;//   	private String introContent;//   	private Integer uploadnum;//   	private String industryid;//   	public Integer getId() {	    return this.id;	}	public void setId(Integer id) {	    this.id=id;	}	public String getTitle() {	    return this.title;	}	public void setTitle(String title) {	    this.title=title;	}	public String getHomeimg() {	    return this.homeimg;	}	public void setHomeimg(String homeimg) {	    this.homeimg=homeimg;	}	public java.util.Date getStartdate() {	    return this.startdate;	}	public void setStartdate(java.util.Date startdate) {	    this.startdate=startdate;	}	public java.util.Date getEnddate() {	    return this.enddate;	}	public void setEnddate(java.util.Date enddate) {	    this.enddate=enddate;	}	public Integer getUploadleast() {	    return this.uploadleast;	}	public void setUploadleast(Integer uploadleast) {	    this.uploadleast=uploadleast;	}	public String getIntro() {	    return this.intro;	}	public void setIntro(String intro) {	    this.intro=intro;	}	public String getIntroContent() {	    return this.introContent;	}	public void setIntroContent(String introContent) {	    this.introContent=introContent;	}	public Integer getUploadnum() {	    return this.uploadnum;	}	public void setUploadnum(Integer uploadnum) {	    this.uploadnum=uploadnum;	}	public String getIndustryid() {	    return this.industryid;	}	public void setIndustryid(String industryid) {	    this.industryid=industryid;	}
+	
+}

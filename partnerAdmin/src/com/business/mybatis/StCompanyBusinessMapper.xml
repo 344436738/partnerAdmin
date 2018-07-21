@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StCompanyBusinessMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StCompanyBusiness" >
+	<result column="id" property="id"/>
+	<result column="business" property="business"/>
+	<result column="userid" property="userid"/>
+	<result column="bstatus" property="bstatus"/>
+</resultMap>
+       
+<!-- st_dictionary table all fields -->
+<sql id="Base_Column_List" >
+	 id,business,userid,bstatus
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="business != null and business != ''" >
+	    and business =  #{business}
+	</if>
+	 	<if test="userid != null" >
+	    and userid =  #{userid}
+	</if>
+	 	<if test="bstatus != null" >
+	    and bstatus =  #{bstatus}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into st_company_business(id,business,userid,bstatus)
+ values(#{id},#{business},#{userid},#{bstatus})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_company_business set business=#{business},userid=#{userid},bstatus=#{bstatus} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_company_business set 
+	<trim  suffixOverrides="," >
+	<if test="business != null  and business != '' ">
+		business=#{business},
+	</if>
+	<if test="userid != null ">
+		userid=#{userid},
+	</if>
+	<if test="bstatus != null  ">
+		bstatus=#{bstatus},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_company_business where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 合伙人系统字典表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_company_business where id = #{id}
+</select>
+
+<!-- 合伙人系统字典表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_company_business 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询合伙人系统字典表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_company_business 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>

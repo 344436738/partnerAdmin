@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.mapper.WeixinMenuMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.weixin.bean.WeixinMenu" >
+	<result column="id" property="id"/>
+	<result column="menukey" property="menukey"/>
+	<result column="msgtype" property="msgtype"/>
+	<result column="name" property="name"/>
+	<result column="sorting" property="sorting"/>
+	<result column="templateid" property="templateid"/>
+	<result column="type" property="type"/>
+	<result column="url" property="url"/>
+	<result column="fatherid" property="fatherid"/>
+	<result column="accountid" property="accountid"/>
+</resultMap>
+       
+<!-- weixin_menu table all fields -->
+<sql id="Base_Column_List" >
+	 id,menukey,msgtype,name,sorting,templateid,type,url,fatherid,accountid
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="menukey != null and menukey != ''" >
+	    and menukey =  #{menukey}
+	</if>
+	 	<if test="msgtype != null and msgtype != ''" >
+	    and msgtype =  #{msgtype}
+	</if>
+	 	<if test="name != null and name != ''" >
+	    and name =  #{name}
+	</if>
+	<if test="sorting != null" >
+	    and sorting =  #{sorting}
+	</if>
+	<if test="templateid != null" >
+	    and templateid =  #{templateid}
+	</if>
+	 	<if test="type != null and type != ''" >
+	    and type =  #{type}
+	</if>
+	 	<if test="url != null and url != ''" >
+	    and url =  #{url}
+	</if>
+	<if test="fatherid != null" >
+	    and fatherid =  #{fatherid}
+	</if>
+	<!-- 如果parentId为空,这查询顶级菜单 -->
+	<if test="fatherid == null" >
+	    and fatherid is null
+	</if>
+	<if test="accountid != null" >
+	    and accountid =  #{accountid}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into weixin_menu(id,menukey,msgtype,name,sorting,templateid,type,url,fatherid,accountid)
+ values(#{id},#{menukey},#{msgtype},#{name},#{sorting},#{templateid},#{type},#{url},#{fatherid},#{accountid})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update weixin_menu set menukey=#{menukey},msgtype=#{msgtype},name=#{name},sorting=#{sorting},templateid=#{templateid},type=#{type},url=#{url},fatherid=#{fatherid},accountid=#{accountid} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update weixin_menu set 
+	<trim  suffixOverrides="," >
+	<if test="menukey != null  and menukey != '' ">
+		menukey=#{menukey},
+	</if>
+	<if test="msgtype != null  and msgtype != '' ">
+		msgtype=#{msgtype},
+	</if>
+	<if test="name != null  and name != '' ">
+		name=#{name},
+	</if>
+	<if test="sorting != null  ">
+		sorting=#{sorting},
+	</if>
+	<if test="templateid != null  ">
+		templateid=#{templateid},
+	</if>
+	<if test="type != null  and type != '' ">
+		type=#{type},
+	</if>
+	<if test="url != null  and url != '' ">
+		url=#{url},
+	</if>
+	<if test="fatherid != null  ">
+		fatherid=#{fatherid},
+	</if>
+	<if test="accountid != null  ">
+		accountid=#{accountid},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from weixin_menu where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 微信公众平台账户 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_menu where id = #{id}
+</select>
+<!-- 查询 menukey -->
+<select id="findUniqueByProperty"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_menu where menukey=#{menukey}
+</select>
+
+<!-- 微信公众平台账户 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from weixin_menu 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询微信公众平台账户列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	,(SELECT COUNT(*) FROM weixin_menu c  WHERE c.fatherid = m.id ) AS subCount
+	from weixin_menu m
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

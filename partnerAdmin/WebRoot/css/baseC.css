@@ -1,0 +1,820 @@
+/*预定义颜色*/
+/*预定义颜色*/
+/*预定义CSS*/
+.noWrap {
+  word-break: keep-all;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+/*预定义CSS*/
+/****企业首页开始****/
+.indexPage .header {
+  height: 90px;
+  border-bottom: 2px solid #269edb;
+}
+.indexPage .header .logo {
+  cursor: default;
+  padding: 0 20px;
+  line-height: 88px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.indexPage .header .menuList li {
+  float: left;
+  margin-left: 20px;
+}
+.indexPage .header .menuList a {
+  display: block;
+  padding: 0 25px;
+  line-height: 87px;
+  font-size: 20px;
+  border-bottom: 1px solid transparent;
+}
+.indexPage .header .menuList a:hover,
+.indexPage .header .menuList a.active {
+  border-bottom: 1px solid #269edb;
+}
+.indexPage .header .menuList a:hover {
+  color: #269edb;
+}
+.indexPage .header .menuList .logins a {
+  line-height: 82px;
+  height: 88px;
+  padding: 0;
+  font-size: 14px;
+  display: inline-block;
+  border: 0;
+}
+.indexPage .header .menuList .logins a:hover {
+  color: #269edb;
+}
+.indexPage .content {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  background: url(../images/indexBg.png) no-repeat center center;
+  background-size: 100% 100%;
+}
+.indexPage .main {
+  padding: 40px 0 0;
+}
+.indexPage .main .titleBox {
+  color: #fff;
+}
+.indexPage .main .titleBox .titleImg {
+  width: 588px;
+  height: 45px;
+  background: url(../images/indexTXT.png) no-repeat left center;
+  margin-bottom: 50px;
+}
+.indexPage .main .titleBox a {
+  display: block;
+  height: 35px;
+  padding-left: 100px;
+  line-height: 30px;
+  color: #fff;
+  font-size: 24px;
+  background: url(../images/right.png) no-repeat 60px 1px;
+}
+.indexPage .main .register {
+  width: 260px;
+  border: 1px solid #ccc;
+  background: #f2f2f4;
+  padding: 19px 29px;
+  border-radius: 4px;
+}
+.indexPage .main .register .button {
+  width: 100%;
+  height: 50px;
+  line-height: 38px;
+  text-align: center;
+  font-size: 16px;
+}
+.indexPage .main .register .toLogin {
+  margin-bottom: 11px;
+}
+.indexPage .main .register .formGroup .input,
+.indexPage .main .register .formGroup h4,
+.indexPage .main .register .formGroup .selectBox {
+  margin-bottom: 11px;
+}
+.indexPage .main .register .formGroup .input {
+  border: 0;
+}
+.indexPage .main .register .formGroup .selectBox {
+  position: relative;
+  cursor: default;
+}
+.indexPage .main .register .formGroup .selectBox .selectList {
+  border: 0;
+  height: 34px;
+  padding: 6px;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+  color: #606060;
+}
+.indexPage .main .register .formGroup .button {
+  margin-top: 11px;
+  cursor: pointer;
+}
+.indexPage .footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(211, 217, 237, 0.6);
+}
+.indexPage .footer .wd1200 {
+  padding: 10px;
+}
+.indexPage .footer .media .circleBox {
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50%;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.indexPage .footer .media strong {
+  display: block;
+  padding: 6px 0 0;
+  font-size: 20px;
+}
+.indexPage .footer .media p {
+  font-size: 16px;
+}
+.indexPage .footer .media .gongxinag {
+  background-image: url(../images/gongxiang.png);
+}
+.indexPage .footer .media .huhuan {
+  background-image: url(../images/huhuan.png);
+}
+/****企业首页结束****/
+/****确认商机开始****/
+.sureBOPage {
+  padding-left: 28px !important;
+}
+.sureBOPage .btnGroup {
+  padding: 20px 0;
+}
+.sureBOPage .btnGroup .fl .button {
+  margin-right: 10px;
+  cursor: pointer;
+  min-width: 100px;
+  text-align: center;
+}
+.sureBOPage .btnGroup .fr .button,
+.sureBOPage .btnGroup .fr ul {
+  min-width: 130px;
+}
+.sureBOPage .tableBox {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-right: 0;
+  border-bottom: 0;
+}
+.sureBOPage .tableBox li {
+  clear: both;
+}
+.sureBOPage .tableBox li > div {
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 8px;
+  text-align: center;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  word-break: keep-all;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.sureBOPage .tableBox li.title > div {
+  padding: 0;
+  font-weight: bold;
+  background: #f5f5f5;
+}
+.sureBOPage .tableBox li .num,
+.sureBOPage .tableBox li .status,
+.sureBOPage .tableBox li .evaluate {
+  width: 80px;
+}
+.sureBOPage .tableBox li .BOLink {
+  width: 731px;
+  text-align: left;
+}
+.sureBOPage .tableBox li.title .num {
+  padding: 0 10px;
+}
+.sureBOPage .tableBox li.title .BOLink,
+.sureBOPage .tableBox li .BOLink {
+  padding: 0 20px;
+}
+.sureBOPage .tableBox li .worry {
+  color: #f99543;
+}
+.sureBOPage .tableBox li .info {
+  color: #269edb;
+}
+.sureBOPage .tableBox li .success {
+  color: #338f13;
+}
+/*确认商机弹窗*/
+.surePop {
+  width: 600px;
+}
+.surePop .container-layout {
+  padding: 20px 0;
+}
+.surePop .container-layout .x12.text-center {
+  color: #969696;
+}
+.surePop .x12 {
+  margin-bottom: 20px;
+}
+.surePop .x12 .x4 {
+  line-height: 34px;
+  padding-right: 10px;
+}
+.surePop .x12 .x8 .input {
+  width: 90%;
+}
+.surePop .x12 select {
+  height: 32px;
+  border-radius: 4px;
+  width: 90%;
+  border: 1px solid #ddd;
+  color: #909090;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.surePop .x10 {
+  border: 1px solid orange;
+  padding: 6px 5px 6px 15px;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 4px;
+  color: #636363;
+}
+.surePop .x10 .total {
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+/*确认商机弹窗*/
+/****确认商机结束****/
+/*****确认商机详情*****/
+.sureBODetailsPage .panel {
+  margin: 20px 0;
+  box-shadow: 0 0 1px 2px #f5f5f5;
+  padding: 30px 20px;
+}
+.sureBODetailsPage .panel .x12 {
+  margin-bottom: 15px;
+}
+.sureBODetailsPage .panel .x12 .total {
+  color: #333;
+  font-weight: bold;
+}
+.sureBODetailsPage .panel .companyDetails {
+  border-right: 1px solid #e8e8e8;
+  color: #636363;
+}
+.sureBODetailsPage .panel .presonalDetails {
+  color: #636363;
+  padding-left: 20px;
+}
+/*****确认商机详情*****/
+/****合作登记开始****/
+.cooperationRegisteredPage {
+  padding-left: 28px !important;
+}
+.cooperationRegisteredPage .btnGroup {
+  margin: 20px 0;
+}
+.cooperationRegisteredPage .btnGroup .button {
+  cursor: pointer;
+  margin-left: 10px;
+}
+.cooperationRegisteredPage .tableBox {
+  border: 1px solid #ccc;
+  border-right: 0;
+  border-bottom: 0;
+  margin-bottom: 20px;
+}
+.cooperationRegisteredPage .tableBox li {
+  clear: both;
+}
+.cooperationRegisteredPage .tableBox li > div {
+  float: left;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  padding: 0 8px;
+  line-height: 49px;
+  word-break: keep-all;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.cooperationRegisteredPage .tableBox li .num {
+  width: 70px;
+}
+.cooperationRegisteredPage .tableBox li.title > div {
+  font-weight: bold;
+  background: #f5f5f5;
+}
+/*合作登记弹窗*/
+.CRPop .content {
+  padding: 20px;
+}
+.CRPop .rows {
+  margin-bottom: 20px;
+}
+.CRPop .rows .fl,
+.CRPop .rows .fr {
+  height: 34px;
+  line-height: 34px;
+}
+.CRPop .rows .fr {
+  width: 480px;
+}
+.CRPop .rows .fr span {
+  display: inline-block;
+  text-align: center;
+  width: 20px;
+  margin-right: 10px;
+}
+.CRPop .rows .fr select {
+  width: 240px;
+}
+.CRPop .rows .inputTitle {
+  text-align: center;
+  width: 80px;
+  line-height: 34px;
+}
+.CRPop .rows .input {
+  width: 240px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.CRPop .rows .radioBox {
+  margin-bottom: 10px;
+}
+.CRPop .rows .radioBox input {
+  display: none;
+}
+.CRPop .rows .radioBox label {
+  display: inline-block;
+  width: 120px;
+}
+.CRPop .rows .radioBox label i {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.CRPop .rows .radioBox label.active i {
+  background-color: orange;
+  background-image: url(../images/ratio.png);
+}
+.CRPop .rows .rewardTip {
+  display: inline-block;
+  position: relative;
+  padding-left: 24px;
+  background: url(../images/helpTip.png) no-repeat 5px center;
+}
+.CRPop .rows .rewardTip .tipBody {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 200px;
+  line-height: 20px;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  color: #636363;
+}
+.CRPop .rows .rewardTip:hover .tipBody {
+  display: block;
+}
+/*合作登记弹窗*/
+/*回款记录弹窗*/
+.PRPop .content {
+  padding: 20px;
+}
+.PRPop .content .tableBox {
+  padding: 10px 0 20px;
+}
+.PRPop .content .tableBox ul {
+  width: 480px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-right: 0;
+  border-bottom: 0;
+}
+.PRPop .content .tableBox ul li {
+  clear: both;
+}
+.PRPop .content .tableBox ul li > div {
+  width: 80px;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.PRPop .content .tableBox ul li .long {
+  width: 159px;
+}
+.PRPop .content .tableBox ul li .checkbox1,
+.PRPop .content .tableBox ul li .checkboxAll1 {
+  padding-left: 10px;
+}
+/*回款记录弹窗*/
+/****合作登记结束****/
+/******支付处理开始****/
+.paymentProcessPage .dataPanel {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fffaee;
+  border: 1px solid #f99543;
+}
+.paymentProcessPage .dataPanel .dateBox {
+  position: relative;
+  width: 200px;
+}
+.paymentProcessPage .dataPanel .dateBox .datainp {
+  width: 200px;
+  margin-bottom: 20px;
+  border: 1px #ccc solid;
+  padding: 5px;
+  padding-right: 35px;
+  height: 30px;
+  line-height: 30px;
+}
+.paymentProcessPage .dataPanel .dateBox .dateIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: url(../images/dateIcon.png) no-repeat left center;
+}
+.paymentProcessPage .btnGroup {
+  margin-top: 20px;
+}
+.paymentProcessPage .btnGroup .button {
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+}
+.paymentProcessPage .tableBox {
+  margin-top: 20px;
+}
+.paymentProcessPage .tableBox ul {
+  border: 1px solid #ccc;
+  border-right: 0;
+  border-bottom: 0;
+}
+.paymentProcessPage .tableBox li {
+  clear: both;
+}
+.paymentProcessPage .tableBox li.title > div {
+  background: #f5f5f5;
+  font-weight: bold;
+}
+.paymentProcessPage .tableBox li > div {
+  float: left;
+  height: 50px;
+  line-height: 49px;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  text-align: center;
+  padding: 0 8px;
+  word-break: keep-all;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.paymentProcessPage .tableBox li .num,
+.paymentProcessPage .tableBox li .name {
+  width: 80px;
+}
+.paymentProcessPage .tableBox li .money {
+  width: 90px;
+}
+.paymentProcessPage .tableBox li .detailsTxt {
+  width: 130px;
+}
+.paymentProcessPage .tableBox li .bankNum,
+.paymentProcessPage .tableBox li .handlingTime,
+.paymentProcessPage .tableBox li .status {
+  width: 150px;
+}
+.paymentProcessPage .tableBox li .others {
+  width: 140px;
+}
+.paymentProcessPage .tableBox li .detailsTxt > div {
+  line-height: 24px;
+  text-align: left;
+  word-break: keep-all;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.paymentProcessPage .pagination {
+  margin: 20px 0 30px;
+}
+/*提示弹窗*/
+.tipPop .content {
+  padding: 70px 20px;
+  text-align: center;
+  font-size: 24px;
+}
+/*提示弹窗*/
+/*****支付处理结束*****/
+/******商机评级******/
+.businessRatingPage .panel {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 20px;
+  box-shadow: 0 1px 1px 1px #eee;
+}
+.businessRatingPage .panel h4 {
+  font-weight: bold;
+}
+.businessRatingPage .panel .rewardTip {
+  display: inline-block;
+  position: relative;
+  padding-left: 24px;
+  background: url(../images/helpTip.png) no-repeat 5px center;
+}
+.businessRatingPage .panel .rewardTip .tipBody {
+  display: none;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 200px;
+  line-height: 20px;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  color: #636363;
+  background: #fff;
+}
+.businessRatingPage .panel .rewardTip:hover .tipBody {
+  display: block;
+}
+.businessRatingPage .panel .inputBody {
+  width: 600px;
+  margin: 20px auto 30px;
+}
+.businessRatingPage .panel .inputBody .line {
+  margin-bottom: 20px;
+}
+.businessRatingPage .panel .inputBody .total {
+  line-height: 34px;
+  width: 70px;
+  padding-right: 10px;
+  text-align: right;
+}
+.businessRatingPage .panel .inputBody .input {
+  width: 200px;
+  background: #fafafa;
+}
+.businessRatingPage .panel .btnGroup {
+  padding: 30px 0;
+  border-top: 1px dashed #ccc;
+}
+.businessRatingPage .panel .btnGroup .button {
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+}
+/******商机评级*****/
+/*****公司业务开始*****/
+.companyBusinessPage .panel {
+  padding: 0 20px;
+  box-shadow: 0 1px 1px 1px #eee;
+}
+.companyBusinessPage .panel .panel-body h2 {
+  font-size: 24px;
+}
+.companyBusinessPage .panel .panel-body .tableBox {
+  width: 381px;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  border-right: 0;
+  margin: 10px auto 20px;
+}
+.companyBusinessPage .panel .panel-body .tableBox li {
+  clear: both;
+}
+.companyBusinessPage .panel .panel-body .tableBox li > div {
+  width: 300px;
+  float: left;
+  height: 50px;
+  padding-left: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  line-height: 49px;
+}
+.companyBusinessPage .panel .panel-body .tableBox li .num {
+  width: 80px;
+}
+.companyBusinessPage .panel .panel-foot {
+  background: #fff;
+  padding: 20px 0;
+  border-top: 1px dashed #ddd;
+}
+.companyBusinessPage .panel .panel-foot .button {
+  width: 120px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 6px;
+}
+/*输入内容弹窗*/
+.textareaPop .content {
+  padding: 25px 20px 30px;
+}
+.textareaPop .content textarea {
+  width: 100%;
+  max-width: 560px;
+  height: 90px;
+}
+/*输入内容弹窗*/
+/*****公司业务结束*****/
+/****消息页面开始*****/
+.messagePage h3.mainTitle {
+  font-size: 20px;
+  height: 37px;
+  border-bottom: 1px solid #ebebeb;
+  cursor: default;
+}
+.messagePage .btnGroup {
+  margin: 20px 0;
+}
+.messagePage .btnGroup .button {
+  margin-right: 10px;
+  min-width: 100px;
+  text-align: center;
+}
+.messagePage .msgBox {
+  margin-bottom: 75px;
+}
+.messagePage .msgBox li {
+  border: 1px solid #ccc;
+  border-top: 0;
+  *zoom: 1;
+}
+.messagePage .msgBox li:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.messagePage .msgBox li .num {
+  padding: 20px;
+  width: 100px;
+  color: #969696;
+}
+.messagePage .msgBox li .num span {
+  margin-left: 5px;
+}
+.messagePage .msgBox li.title {
+  border: 1px solid #f99543;
+  font-weight: bold;
+  background: #fffaee;
+}
+.messagePage .msgBox li.title .num {
+  color: #333;
+}
+.messagePage .msgBox li.title h4.total {
+  position: relative;
+  top: 2px;
+}
+.messagePage .msgBox li .content {
+  padding: 20px 100px 20px 0;
+  position: relative;
+  width: 1058px;
+}
+.messagePage .msgBox li .content h4.total {
+  font-size: 14px;
+  font-weight: bold;
+  height: 24px;
+  line-height: 22px;
+  word-break: keep-all;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.messagePage .msgBox li .content .text {
+  color: #636363;
+  word-break: keep-all;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.messagePage .msgBox li .content .btn-ab {
+  display: block;
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  top: 27px;
+  right: 20px;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #b2b2b2;
+}
+.messagePage .msgBox li .content .btn-ab:hover {
+  color: #269edb;
+}
+/****消息页面结束*****/
+
+/******企业评价******/
+.enterpriseEvaluationPage .mainEvaluation {
+  padding: 20px;
+}
+.enterpriseEvaluationPage .mainEvaluation .starLine {
+  width: 280px;
+  margin: 0 auto 20px;
+  font-size: 18px;
+}
+.enterpriseEvaluationPage .mainEvaluation .starBox {
+  margin-top: 3px;
+  margin-left: 20px;
+}
+.enterpriseEvaluationPage .mainEvaluation .starBox li {
+  cursor: pointer;
+  margin-left: 8px;
+  float: left;
+  width: 18px;
+  height: 18px;
+  background: url(../images/star.png) no-repeat center center;
+}
+.enterpriseEvaluationPage .mainEvaluation .starBox li.active {
+  background: url(../images/starA.png) no-repeat center center;
+}
+.enterpriseEvaluationPage .mainEvaluation .textareaBox {
+  width: 800px;
+  margin: 20px auto;
+}
+.enterpriseEvaluationPage .mainEvaluation .textareaBox .input {
+  border: 1px solid #f99543;
+}
+.enterpriseEvaluationPage .mainEvaluation .btnGroup {
+  margin: 80px 0;
+}
+.enterpriseEvaluationPage .mainEvaluation .btnGroup .button {
+  min-width: 100px;
+  text-align: center;
+}
+/******企业评价******/

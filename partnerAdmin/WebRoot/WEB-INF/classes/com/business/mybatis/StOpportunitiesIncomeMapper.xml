@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StOpportunitiesIncomeMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StOpportunitiesIncome" >
+	<result column="id" property="id"/>
+	<result column="userid" property="userid"/>
+	<result column="income" property="income"/>
+	<result column="objid" property="objid"/>
+	<result column="type" property="type"/>
+	<result column="status" property="status"/>
+</resultMap>
+       
+<!-- st_opportunities_income table all fields -->
+<sql id="Base_Column_List" >
+	 id,userid,income,objid,type,status
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="userid != null" >
+	    and userid =  #{userid}
+	</if>
+	<if test="income != null" >
+	    and income =  #{income}
+	</if>
+	<if test="objid != null" >
+	    and objid =  #{objid}
+	</if>
+	<if test="type != null" >
+	    and type =  #{type}
+	</if>
+	<if test="status != null" >
+	    and status =  #{status}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into st_opportunities_income(id,userid,income,objid,type,status)
+ values(#{id},#{userid},#{income},#{objid},#{type},#{status})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_opportunities_income set userid=#{userid},income=#{income},objid=#{objid},type=#{type},status=#{status} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_opportunities_income set 
+	<trim  suffixOverrides="," >
+	<if test="userid != null  ">
+		userid=#{userid},
+	</if>
+	<if test="income != null  ">
+		income=#{income},
+	</if>
+	<if test="objid != null  ">
+		objid=#{objid},
+	</if>
+	<if test="type != null  ">
+		type=#{type},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_opportunities_income where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 商机收入表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_opportunities_income where id = #{id}
+</select>
+
+<!-- 商机收入表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_opportunities_income 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询商机收入表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_opportunities_income 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<!-- 查询统计商机收入的各个部分 -->
+<select id="oppIncomeSum" resultType="map"  parameterType="Object">
+	select sum(1) as oppincome,sum(type=1) as oppcheckincome,sum(type=2) as oppcoopincome,sum(type=3) as recommendincome  from st_opportunities_income 
+    group by userid having userid=#{userid}
+
+</select>
+
+  	
+</mapper>   

@@ -1,0 +1,391 @@
+/*棰勫畾涔夐鑹�/
+/*棰勫畾涔夐鑹�/
+/*閫氱敤CSS*/
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+code,
+del,
+dfn,
+em,
+q,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+legend,
+caption,
+tbody,
+tfoot,
+thead,
+article,
+aside,
+dialog,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  font-family: "Microsoft YaHei", Arial;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  min-width: 1200px;
+}
+ul,
+li {
+  list-style: none;
+  padding-left: 10px;
+}
+a,
+a:hover,
+a:visited,
+a:focus,
+a:visited {
+  color: #333;
+}
+.button.bg:hover {
+  color: #fff;
+  border-color: #269edb;
+  background: #269edb;
+}
+.wd1200 {
+  width: 1200px;
+  margin: 0 auto;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.orange {
+  color: orange !important;
+}
+.red {
+  color: #ff0000 !important;
+}
+.button {
+  cursor: pointer;
+}
+.pagination a:hover {
+  background: #269edb;
+  color: #fff;
+}
+.checkbox,
+.checkboxAll,
+.checkbox1,
+.checkboxAll1 {
+  display: block;
+  cursor: default;
+  text-align: left;
+  position: relative;
+}
+.checkbox i,
+.checkboxAll i,
+.checkbox1 i,
+.checkboxAll1 i {
+  display: inline-block;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  top: 3px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+.checkbox input,
+.checkboxAll input,
+.checkbox1 input,
+.checkboxAll1 input {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  display: none;
+}
+.checkbox.active i,
+.checkboxAll.active i,
+.checkbox1.active i,
+.checkboxAll1.active i {
+  background: url(../images/cheched.png) no-repeat center center;
+}
+.checkbox i {
+  margin-right: 10px;
+}
+/*瑕嗙洊layer鏍峰紡*/
+body .layui-layer-title {
+  background-color: #269edb;
+  color: #fff;
+  font-size: 18px;
+  height: 50px;
+  line-height: 50px;
+}
+body .layui-layer-title span {
+  font-size: 16px;
+}
+body .layui-layer-setwin {
+  top: 18px;
+}
+body .layui-layer-setwin .layui-layer-close1 {
+  background: url(../images/closeFix.png) no-repeat center center;
+}
+/*閫氱敤CSS*/
+/***寮瑰嚭灞�**/
+.layerPop .container-layout {
+  padding: 20px 0;
+}
+.layerPop select {
+  height: 32px;
+  border-radius: 4px;
+  width: 90%;
+  border: 1px solid #ddd;
+  color: #909090;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.layerPop .btnGroup {
+  border-top: 1px solid #f7f7f7;
+  padding: 18px;
+}
+.layerPop .btnGroup .button {
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 10px;
+}
+/***寮瑰嚭灞�**/
+/****鍏辩敤澶撮儴寮�*****/
+.mainHeader .head {
+  height: 30px;
+  line-height: 30px;
+  background: #fafafa;
+}
+.mainHeader .head li {
+  float: left;
+}
+.mainHeader .head li a {
+  display: block;
+  margin-left: 20px;
+}
+.mainHeader .head li .msgIcon {
+  position: relative;
+  height: 30px;
+  width: 24px;
+  background: url(../images/msgIcon1.png) no-repeat center center;
+}
+.mainHeader .head li .msgIcon .abMsg {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  top: 0px;
+  left: 20px;
+  font-size: 12px;
+  background: #ff0000;
+  line-height: 12px;
+  color: #fff;
+  padding: 2px 4px;
+  border-radius: 4px;
+  text-align: center;
+}
+.mainHeader .head li .tel {
+  padding-left: 24px;
+  height: 30px;
+  background: url(../images/tellIcon1.png) no-repeat left center;
+}
+.mainHeader .head li .tel .blue {
+  color: #269edb;
+}
+.mainHeader .head .orange {
+  color: orange;
+}
+.mainHeader .navs {
+  height: 90px;
+  border-bottom: 1px solid #269edb;
+}
+.mainHeader .navs .logo {
+  width: 204px;
+  height: 90px;
+  background: url(../images/logo.png) no-repeat center center;
+}
+.mainHeader .navs .navList li {
+  float: left;
+}
+.mainHeader .navs .navList a {
+  display: block;
+  height: 89px;
+  padding: 0 15px;
+  line-height: 87px;
+  font-size: 16px;
+  margin-left: 50px;
+  border-bottom: 2px solid transparent;
+}
+.mainHeader .navs .navList a:hover,
+.mainHeader .navs .navList a.active {
+  color: #269edb;
+  border-color: #269edb;
+}
+.mainHeader .navs .navList a.orange,
+.mainHeader .navs .navList a.small:hover {
+  color: #333;
+  border-color: transparent;
+}
+.mainHeader .navs .navList a.small {
+  font-size: 14px;
+  padding-right: 0;
+  position: relative;
+}
+.mainHeader .navs .navList a.small .red {
+  position: absolute;
+  padding: 0 10px;
+  top: 0;
+  left: 100%;
+}
+/****鍏辩敤澶撮儴缁撴潫*****/
+/****鍏辩敤灏鹃儴寮�*****/
+.mainFooter {
+  border-top: 1px solid #e6e6e6;
+  padding: 30px 0;
+}
+.mainFooter .x7 div,
+.mainFooter .x5 div {
+  margin-bottom: 10px;
+}
+.mainFooter .linkTo a {
+  margin-right: 3px;
+}
+.mainFooter .linkTo a:hover {
+  color: #269edb;
+}
+.mainFooter .x5 {
+  padding-left: 75px;
+}
+/****鍏辩敤灏鹃儴缁撴潫*****/
+/*****鍏敤涓績涓庡乏渚у紑濮�*****/
+.mainContent {
+  padding: 28px 0;
+}
+.mainContent .mainLeft {
+  border: 1px solid #ccc;
+}
+.mainContent .leftList {
+  min-height: 350px;
+  border-top: 1px solid #269edb;
+}
+.mainContent .leftList a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-image: url(../images/leftIcon.png);
+  background-repeat: no-repeat;
+}
+.mainContent .leftList a.active,
+.mainContent .leftList a.active:hover {
+  color: #fff;
+  background-color: #269edb;
+}
+.mainContent .leftList a:hover {
+  color: #269edb;
+}
+.mainContent .leftList a.niche {
+  background-position: 35px -37px;
+}
+.mainContent .leftList a.niche.active {
+  background-position: 35px 13px;
+}
+.mainContent .leftList a.registered {
+  background-position: 35px -85px;
+}
+.mainContent .leftList a.registered.active {
+  background-position: 35px -135px;
+}
+.mainContent .leftList a.payment {
+  background-position: 35px -186px;
+}
+.mainContent .leftList a.payment.active {
+  background-position: 35px -236px;
+}
+.mainContent .leftList a.grade {
+  background-position: 35px -285px;
+}
+.mainContent .leftList a.grade.active {
+  background-position: 35px -335px;
+}
+.mainContent .leftList a.business {
+  background-position: 35px -386px;
+}
+.mainContent .leftList a.business.active {
+  background-position: 35px -436px;
+}
+.mainContent .x10 {
+  padding-left: 29px;
+}
+.mainContent h3.mainTitle {
+  font-size: 20px;
+  height: 37px;
+  border-bottom: 1px solid #ebebeb;
+  cursor: default;
+}
+/*****鍏敤涓績涓庡乏渚х粨鏉�*****/
+/*涓�敭鍒嗕韩寮圭獥*/
+.sharePop .content {
+  padding: 20px;
+}
+.sharePop .content .title {
+  margin-bottom: 20px;
+  color: #969696;
+  text-align: center;
+}
+.sharePop .content .shareBtn > .fl {
+  width: 33.3%;
+  padding: 30px 0 50px;
+}
+.sharePop .content .shareBtn > .fl .circleBox {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.sharePop .content .shareBtn .qqIcon .circleBox {
+  background: url(../images/shareIcon.png) no-repeat 0px 0px;
+}
+.sharePop .content .shareBtn .weixinIcon .circleBox {
+  background: url(../images/shareIcon.png) no-repeat 0px -36px;
+}
+.sharePop .content .shareBtn .weiboIcon .circleBox {
+  background: url(../images/shareIcon.png) no-repeat 0px -72px;
+}
+/*涓�敭鍒嗕韩寮圭獥*/
+
+
+
+
+
+
+

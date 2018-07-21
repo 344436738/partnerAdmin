@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.mapper.WeixinHuodongMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.weixin.bean.WeixinHuodong" >
+	<result column="id" property="id"/>
+	<result column="title" property="title"/>
+	<result column="description" property="description"/>
+	<result column="priceone" property="priceone"/>
+	<result column="onetotal" property="onetotal"/>
+	<result column="pricetwo" property="pricetwo"/>
+	<result column="twototal" property="twototal"/>
+	<result column="pricethree" property="pricethree"/>
+	<result column="threetotal" property="threetotal"/>
+	<result column="starttime" property="starttime"/>
+	<result column="endtime" property="endtime"/>
+	<result column="type" property="type"/>
+	<result column="gl" property="gl"/>
+	<result column="count" property="count"/>
+	<result column="accountid" property="accountid"/>
+	<result column="glone" property="glone"/>
+	<result column="gltwo" property="gltwo"/>
+	<result column="glthree" property="glthree"/>
+</resultMap>
+       
+<!-- weixin_huodong table all fields -->
+<sql id="Base_Column_List" >
+	 id,title,description,priceone,onetotal,pricetwo,twototal,pricethree,threetotal,starttime,endtime,type,gl,count,accountid,glone,gltwo,glthree
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	 	<if test="id != null  " >
+	    and id =  #{id}
+	</if>
+	 	<if test="title != null and title != ''" >
+	    and title =  #{title}
+	</if>
+	 	<if test="description != null and description != ''" >
+	    and description =  #{description}
+	</if>
+	 	<if test="priceone != null and priceone != ''" >
+	    and priceone =  #{priceone}
+	</if>
+	<if test="onetotal != null" >
+	    and onetotal =  #{onetotal}
+	</if>
+	 	<if test="pricetwo != null and pricetwo != ''" >
+	    and pricetwo =  #{pricetwo}
+	</if>
+	<if test="twototal != null" >
+	    and twototal =  #{twototal}
+	</if>
+	 	<if test="pricethree != null and pricethree != ''" >
+	    and pricethree =  #{pricethree}
+	</if>
+	<if test="threetotal != null" >
+	    and threetotal =  #{threetotal}
+	</if>
+	<if test="starttime != null" >
+	    and starttime =  #{starttime}
+	</if>
+	<if test="endtime != null" >
+	    and endtime =  #{endtime}
+	</if>
+	 	<if test="type != null and type != ''" >
+	    and type =  #{type}
+	</if>
+	 	<if test="gl != null and gl != ''" >
+	    and gl =  #{gl}
+	</if>
+	 	<if test="count != null and count != ''" >
+	    and count =  #{count}
+	</if>
+	 	<if test="accountid != null " >
+	    and accountid =  #{accountid}
+	</if>
+	
+	<if test="glone != null and glone != ''" >
+	    and glone =  #{glone}
+	</if>
+ 	<if test="gltwo != null and gltwo != ''" >
+	    and gltwo =  #{gltwo}
+	</if>
+ 	<if test="glthree != null and glthree != ''" >
+	    and glthree =  #{glthree}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into weixin_huodong(id,title,description,priceone,onetotal,pricetwo,twototal,pricethree,threetotal,starttime,endtime,type,gl,count,accountid,glone,gltwo,glthree)
+ values(#{id},#{title},#{description},#{priceone},#{onetotal},#{pricetwo},#{twototal},#{pricethree},#{threetotal},#{starttime},#{endtime},#{type},#{gl},#{count},#{accountid},#{glone},#{gltwo},#{glthree})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update weixin_huodong set title=#{title},description=#{description},priceone=#{priceone},onetotal=#{onetotal},pricetwo=#{pricetwo},twototal=#{twototal},pricethree=#{pricethree},threetotal=#{threetotal},starttime=#{starttime},endtime=#{endtime},type=#{type},gl=#{gl},count=#{count},accountid=#{accountid},glone=#{glone} ,gltwo=#{gltwo} ,glthree=#{glthree}  where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update weixin_huodong set 
+	<trim  suffixOverrides="," >
+	<if test="title != null  and title != '' ">
+		title=#{title},
+	</if>
+	<if test="description != null  and description != '' ">
+		description=#{description},
+	</if>
+	<if test="priceone != null  and priceone != '' ">
+		priceone=#{priceone},
+	</if>
+	<if test="onetotal != null  ">
+		onetotal=#{onetotal},
+	</if>
+	<if test="pricetwo != null  and pricetwo != '' ">
+		pricetwo=#{pricetwo},
+	</if>
+	<if test="twototal != null  ">
+		twototal=#{twototal},
+	</if>
+	<if test="pricethree != null  and pricethree != '' ">
+		pricethree=#{pricethree},
+	</if>
+	<if test="threetotal != null  ">
+		threetotal=#{threetotal},
+	</if>
+	<if test="starttime != null  ">
+		starttime=#{starttime},
+	</if>
+	<if test="endtime != null  ">
+		endtime=#{endtime},
+	</if>
+	<if test="type != null  and type != '' ">
+		type=#{type},
+	</if>
+	<if test="gl != null  and gl != '' ">
+		gl=#{gl},
+	</if>
+	<if test="count != null  and count != '' ">
+		count=#{count},
+	</if>
+	<if test="accountid != null   ">
+		accountid=#{accountid},
+	</if>
+	<if test="glone != null and glone != ''" >
+	     glone =  #{glone}
+	</if>
+ 	<if test="gltwo != null and gltwo != ''" >
+	    gltwo =  #{gltwo}
+	</if>
+ 	<if test="glthree != null and glthree != ''" >
+	    glthree =  #{glthree}
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from weixin_huodong where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 图文消息表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_huodong where id = #{id}
+</select>
+
+<!-- 图文消息表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from weixin_huodong 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询图文消息表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from weixin_huodong 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

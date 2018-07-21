@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StOpportunitiesEvaluatePersonMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StOpportunitiesEvaluatePerson" >
+	<result column="id" property="id"/>
+	<result column="oppid" property="oppid"/>
+	<result column="userid" property="userid"/>
+	<result column="evaluateid" property="evaluateid"/>
+	<result column="msgtruth" property="msgtruth"/>
+	<result column="keepcontract" property="keepcontract"/>
+	<result column="coopattitude" property="coopattitude"/>
+	<result column="evaluatecontent" property="evaluatecontent"/>
+	<result column="evaluatedate" property="evaluatedate"/>
+</resultMap>
+       
+<!-- st_opportunities_evaluate_person table all fields -->
+<sql id="Base_Column_List" >
+	 id,oppid,userid,evaluateid,msgtruth,keepcontract,coopattitude,evaluatecontent,evaluatedate
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="oppid != null" >
+	    and oppid =  #{oppid}
+	</if>
+	<if test="userid != null" >
+	    and userid =  #{userid}
+	</if>
+	<if test="evaluateid != null" >
+	    and evaluateid =  #{evaluateid}
+	</if>
+	<if test="msgtruth != null" >
+	    and msgtruth =  #{msgtruth}
+	</if>
+	<if test="keepcontract != null" >
+	    and keepcontract =  #{keepcontract}
+	</if>
+	<if test="coopattitude != null" >
+	    and coopattitude =  #{coopattitude}
+	</if>
+	 	<if test="evaluatecontent != null and evaluatecontent != ''" >
+	    and evaluatecontent =  #{evaluatecontent}
+	</if>
+	<if test="evaluatedate != null" >
+	    and evaluatedate =  #{evaluatedate}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into st_opportunities_evaluate_person(id,oppid,userid,evaluateid,msgtruth,keepcontract,coopattitude,evaluatecontent,evaluatedate)
+ values(#{id},#{oppid},#{userid},#{evaluateid},#{msgtruth},#{keepcontract},#{coopattitude},#{evaluatecontent},#{evaluatedate})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_opportunities_evaluate_person set oppid=#{oppid},userid=#{userid},evaluateid=#{evaluateid},msgtruth=#{msgtruth},keepcontract=#{keepcontract},coopattitude=#{coopattitude},evaluatecontent=#{evaluatecontent},evaluatedate=#{evaluatedate} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_opportunities_evaluate_person set 
+	<trim  suffixOverrides="," >
+	<if test="oppid != null  ">
+		oppid=#{oppid},
+	</if>
+	<if test="userid != null  ">
+		userid=#{userid},
+	</if>
+	<if test="evaluateid != null  ">
+		evaluateid=#{evaluateid},
+	</if>
+	<if test="msgtruth != null  ">
+		msgtruth=#{msgtruth},
+	</if>
+	<if test="keepcontract != null  ">
+		keepcontract=#{keepcontract},
+	</if>
+	<if test="coopattitude != null  ">
+		coopattitude=#{coopattitude},
+	</if>
+	<if test="evaluatecontent != null  and evaluatecontent != '' ">
+		evaluatecontent=#{evaluatecontent},
+	</if>
+	<if test="evaluatedate != null  ">
+		evaluatedate=#{evaluatedate},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_opportunities_evaluate_person where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 个人评价表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_opportunities_evaluate_person where id = #{id}
+</select>
+
+<!-- 个人评价表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_opportunities_evaluate_person 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询个人评价表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_opportunities_evaluate_person 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

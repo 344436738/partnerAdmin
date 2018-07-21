@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.mapper.WeixinNewstemplateMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.weixin.bean.WeixinNewstemplate" >
+	<result column="id" property="id"/>
+	<result column="addtime" property="addtime"/>
+	<result column="templatename" property="templatename"/>
+	<result column="type" property="type"/>
+	<result column="accountid" property="accountid"/>
+</resultMap>
+       
+<!-- weixin_newstemplate table all fields -->
+<sql id="Base_Column_List" >
+	 id,addtime,templatename,type,accountid
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="addtime != null" >
+	    and addtime =  #{addtime}
+	</if>
+	 	<if test="templatename != null and templatename != ''" >
+	    and templatename =  #{templatename}
+	</if>
+	 	<if test="type != null and type != ''" >
+	    and type =  #{type}
+	</if>
+	
+	<if test="accountid != null" >
+	    and accountid =  #{accountid}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into weixin_newstemplate(id,addtime,templatename,type,accountid)
+ values(#{id},now(),#{templatename},#{type},#{accountid})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update weixin_newstemplate set addtime=#{addtime},templatename=#{templatename},type=#{type},accountid=#{accountid} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update weixin_newstemplate set 
+	<trim  suffixOverrides="," >
+	<if test="addtime != null  ">
+		addtime=#{addtime},
+	</if>
+	<if test="templatename != null  and templatename != '' ">
+		templatename=#{templatename},
+	</if>
+	<if test="type != null  and type != '' ">
+		type=#{type},
+	</if>
+	
+	<if test="accountid != null  ">
+		accountid=#{accountid},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from weixin_newstemplate where id=#{id}
+</delete>
+ 
+<!-- 根据id查询 微信公众平台账户 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_newstemplate where id=#{id}
+</select>
+
+<!-- 微信公众平台账户 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from weixin_newstemplate 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询微信公众平台账户列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from weixin_newstemplate 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

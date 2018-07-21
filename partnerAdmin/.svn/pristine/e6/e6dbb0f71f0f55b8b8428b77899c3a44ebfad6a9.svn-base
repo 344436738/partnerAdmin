@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.mapper.WeixinAttentionMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.weixin.bean.WeixinAttention" >
+	<result column="id" property="id"/>
+	<result column="openid" property="openid"/>
+	<result column="nickname" property="nickname"/>
+	<result column="sex" property="sex"/>
+	<result column="city" property="city"/>
+	<result column="country" property="country"/>
+	<result column="province" property="province"/>
+	<result column="language" property="language"/>
+	<result column="headimgurl" property="headimgurl"/>
+	<result column="subscribe_time" property="subscribe_time"/>
+	<result column="remark" property="remark"/>
+	<result column="subscribe" property="subscribe"/>
+	<result column="groupid" property="groupid"/>
+</resultMap>
+       
+<!-- weixin_attention table all fields -->
+<sql id="Base_Column_List" >
+	 id,openid,nickname,sex,city,country,province,language,headimgurl,subscribe_time,remark,subscribe,groupid
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="openid != null and openid != ''" >
+	    and openid =  #{openid}
+	</if>
+	 	<if test="nickname != null and nickname != ''" >
+	    and nickname =  #{nickname}
+	</if>
+	<if test="sex != null" >
+	    and sex =  #{sex}
+	</if>
+	 	<if test="city != null and city != ''" >
+	    and city =  #{city}
+	</if>
+	 	<if test="country != null and country != ''" >
+	    and country =  #{country}
+	</if>
+	 	<if test="province != null and province != ''" >
+	    and province =  #{province}
+	</if>
+	 	<if test="language != null and language != ''" >
+	    and language =  #{language}
+	</if>
+	 	<if test="headimgurl != null and headimgurl != ''" >
+	    and headimgurl =  #{headimgurl}
+	</if>
+	<if test="subscribe_time != null" >
+	    and subscribe_time =  #{subscribe_time}
+	</if>
+	 	<if test="remark != null and remark != ''" >
+	    and remark =  #{remark}
+	</if>
+	 	<if test="subscribe != null " >
+	    and subscribe =  #{subscribe}
+	</if>
+	<if test="groupid != null" >
+	    and groupid =  #{groupid}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into weixin_attention(id,openid,nickname,sex,city,country,province,language,headimgurl,subscribe_time,remark,subscribe,groupid)
+ values(#{id},#{openid},#{nickname},#{sex},#{city},#{country},#{province},#{language},#{headimgurl},#{subscribe_time},#{remark},#{subscribe},#{groupid})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update weixin_attention set openid=#{openid},nickname=#{nickname},sex=#{sex},city=#{city},country=#{country},province=#{province},language=#{language},headimgurl=#{headimgurl},subscribe_time=#{subscribe_time},remark=#{remark},subscribe=#{subscribe},groupid=#{groupid} where id=#{id}
+ </update>
+ <!-- 根据openid，修改记录--> 
+  <update id="updateSubscribeSelective" parameterType="Object" >
+  update weixin_attention set subscribe=#{subscribe} where openid=#{openid}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update weixin_attention set 
+	<trim  suffixOverrides="," >
+	<if test="openid != null  and openid != '' ">
+		openid=#{openid},
+	</if>
+	<if test="nickname != null  and nickname != '' ">
+		nickname=#{nickname},
+	</if>
+	<if test="sex != null  ">
+		sex=#{sex},
+	</if>
+	<if test="city != null  and city != '' ">
+		city=#{city},
+	</if>
+	<if test="country != null  and country != '' ">
+		country=#{country},
+	</if>
+	<if test="province != null  and province != '' ">
+		province=#{province},
+	</if>
+	<if test="language != null  and language != '' ">
+		language=#{language},
+	</if>
+	<if test="headimgurl != null  and headimgurl != '' ">
+		headimgurl=#{headimgurl},
+	</if>
+	<if test="subscribe_time != null  ">
+		subscribe_time=#{subscribe_time},
+	</if>
+	<if test="remark != null  and remark != '' ">
+		remark=#{remark},
+	</if>
+	<if test="subscribe != null   ">
+		subscribe=#{subscribe},
+	</if>
+	<if test="groupid != null  ">
+		groupid=#{groupid},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from weixin_attention where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 关注用户表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_attention where id = #{id}
+</select>
+
+<select id="queryOpenId"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_attention where openid = #{openid}
+</select>
+
+<!-- 关注用户表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from weixin_attention 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询关注用户表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from weixin_attention 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

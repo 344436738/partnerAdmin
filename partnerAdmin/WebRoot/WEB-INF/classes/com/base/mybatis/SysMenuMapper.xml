@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.mapper.SysMenuMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.base.bean.SysMenu" >
+	<result column="id" property="id"/>
+	<result column="name" property="name"/>
+	<result column="url" property="url"/>
+	<result column="parentId" property="parentId"/>
+	<result column="deleted" property="deleted"/>
+	<result column="createTime" property="createTime"/>
+	<result column="updateTime" property="updateTime"/>
+	<result column="rank" property="rank"/>
+	<result column="actions" property="actions"/>
+	<result column="icon" property="icon"/>
+	<result column="isopen" property="isopen"/>
+</resultMap>
+<!-- readOnly返回的对象被认为是只读的,size存数结果对象或列表的 512个最多可缓存1024个对象, flushInterval每隔 600秒刷新,eviction高级的配置创建了一个 FIFO缓存  -->
+<!-- <cache readOnly="true" flushInterval="600000" size="1024" eviction="FIFO" />  -->
+
+<!-- 扩展字段 -->
+<resultMap id="ExtResultMap" extends="BaseResultMap" type="com.base.bean.SysMenu" >
+	<result column="subCount" property="subCount"/>
+</resultMap>
+
+
+<!-- sys_menu table all fields -->
+<sql id="Base_Column_List">
+	 id,name,url,parentId,deleted,createTime,updateTime,rank,actions,icon,isopen
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1   and deleted =  0
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 <if test="name != null and name != ''" >
+	 	and name like CONCAT('%', #{name}, '%')
+	</if>
+	<if test="url != null and url != ''" >
+	    and url =  #{url}
+	</if>
+	
+	<if test="parentId != null" >
+	    and parentId =  #{parentId}
+	</if>
+	<!-- 如果parentId为空,这查询顶级菜单 -->
+	<if test="parentId == null" >
+	    and parentId is null
+	</if>
+	<if test="isopen != null" >
+	    and isopen == #{isopen}
+	</if>
+	
+	<if test="createTime != null" >
+	    and createTime =  #{createTime}
+	</if>
+	<if test="updateTime != null" >
+	    and updateTime =  #{updateTime}
+	</if>
+	<if test="rank != null" >
+	    and rank =  #{rank}
+	</if>
+	<if test="actions != null and actions != ''" >
+	    and actions =  #{actions}
+	</if>
+</trim>
+</sql>
+   
+													
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" flushCache="false"> <!-- flushCache="false" 不开启二级缓存刷新活清空缓存 -->
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into sys_menu(name,url,parentId,deleted,isopen,createTime,updateTime,rank,actions,icon)
+ values(#{name},#{url},#{parentId},#{deleted},#{isopen},now(),now(),#{rank},#{actions},#{icon})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update sys_menu set id=#{id},name=#{name},url=#{url},parentId=#{parentId},deleted=#{deleted},isopen=#{isopen},updateTime = now(),rank=#{rank},actions=#{actions},icon=#{icon} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sys_menu set 
+	<trim  suffixOverrides="," >
+	<if test="id != null  ">
+		id=#{id},
+	</if>
+	<if test="name != null  and name != '' ">
+		name=#{name},
+	</if>
+	<if test="url != null  and url != '' ">
+		url=#{url},
+	</if>
+	<if test="parentId != null  ">
+		parentId=#{parentId},
+	</if>
+	<if test="deleted != null  ">
+		deleted=#{deleted},
+	</if>
+	<if test="isopen != null  ">
+		isopen=#{isopen},
+	</if>
+	<if test="createTime != null  ">
+		createTime=#{createTime},
+	</if>
+	<if test="updateTime != null  ">
+		updateTime=now(),
+	</if>
+	<if test="rank != null  ">
+		rank=#{rank},
+	</if>
+	<if test="actions != null  and actions != '' ">
+		actions=#{actions}
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<update id="delete" parameterType="Object">
+	update sys_menu set deleted = 1 where id = #{id}
+</update>
+ 
+<!-- 根据id查询 系统菜单 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_menu where id = #{id}
+</select>
+
+<!-- 系统菜单 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_menu 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询系统菜单列表 -->
+<select id="queryByList" resultMap="ExtResultMap"  parameterType="Object" useCache="true">
+	select 
+	<include refid="Base_Column_List"/>
+	,(SELECT COUNT(*) FROM sys_menu c  WHERE c.parentId = m.id and deleted = 0) AS subCount
+	from sys_menu m
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+
+	
+<!-- 查询所有有效系统菜单列表 -->
+<select id="queryByAll" resultMap="BaseResultMap"  parameterType="Object">
+	select  id,name,url,isopen,parentId,actions,icon from sys_menu where deleted= 0 order by rank desc
+</select>
+
+<!-- 获取顶级菜单 -->
+<select id="getRootMenu"  resultMap="BaseResultMap" parameterType="Object">
+	select id,name,url,isopen,parentId,actions,icon from sys_menu where deleted= 0 and parentId is null
+	<if test="menuId != null" >
+     and  id != #{menuId}
+    </if>
+    order by rank asc
+</select>
+
+
+<!-- 获取子菜单-->
+<select id="getChildMenu"  resultMap="BaseResultMap" parameterType="Object">
+	select id,name,url,isopen,parentId,actions,icon from sys_menu where deleted= 0 and parentId is not null
+	order by rank asc
+</select>
+
+<!-- 根据角色Id获取菜单（不需要父菜单） -->
+<select id="getMenuByRoleId"  resultMap="BaseResultMap" parameterType="Object">
+	SELECT id,NAME,url,isopen,parentId,actions,icon FROM sys_menu m WHERE deleted= 0 AND parentId IS NOT NULL
+	AND EXISTS (
+		 SELECT * FROM sys_role_rel r WHERE r.objId = m.id AND relType = 0
+		 AND r.roleId = #{roleId}
+	)
+	order by rank asc
+</select>
+
+<!-- 根据用户id查询父菜单菜单 -->
+<select id="getRootMenuByUser"  resultMap="BaseResultMap" parameterType="Object">
+	SELECT DISTINCT id,NAME,url,isopen,parentId,actions,icon FROM sys_menu m 
+	WHERE deleted= 0 AND parentId IS NULL
+	AND EXISTS (
+		 SELECT * FROM sys_role_rel r 
+		 WHERE r.objId = m.id AND r.relType = 0
+		 AND EXISTS ( 
+			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1 AND u.objId = #{userId}
+		 )
+	)
+	order by rank asc
+</select>
+
+
+<!-- 根据用户id查询子菜单菜单 -->
+<select id="getChildMenuByUser"  resultMap="BaseResultMap" parameterType="Object">
+	SELECT DISTINCT id,NAME,url,isopen,parentId,actions,icon FROM sys_menu m 
+	WHERE deleted= 0 AND parentId IS NOT NULL
+	AND EXISTS (
+		 SELECT * FROM sys_role_rel r 
+		 WHERE r.objId = m.id AND r.relType = 0
+		 AND EXISTS ( 
+			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1 AND u.objId = #{userId}
+		 )
+	)
+	order by rank asc
+</select>
+
+<!-- 根据用户id查询是否具有数据查看权限 -->
+<select id="getViewData"  resultType="com.base.bean.SysRole" parameterType="Object">
+	select * from sys_role sr  WHERE 
+EXISTS (select * from sys_role_rel srr where srr.objId = #{userId} and srr.relType=1 and srr.roleId= sr.id) 
+</select>
+
+
+<!-- 根据角色Id获取父菜单 -->
+<select id="getRootMenuByRoleId"  resultMap="BaseResultMap" parameterType="Object">
+	SELECT id,NAME,url,isopen,parentId,actions,icon,rank  FROM sys_menu m2 WHERE 
+	id in 
+	(SELECT parentId FROM sys_menu m WHERE deleted= 0 AND parentId IS NOT NULL
+		AND EXISTS (
+			 SELECT * FROM sys_role_rel r WHERE r.objId = m.id AND relType = 0
+			 AND r.roleId = #{roleId}
+		)
+		
+	)
+	order by rank asc
+</select>
+
+</mapper>   

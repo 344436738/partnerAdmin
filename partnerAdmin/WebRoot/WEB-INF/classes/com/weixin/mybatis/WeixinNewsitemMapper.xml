@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.mapper.WeixinNewsitemMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.weixin.bean.WeixinNewsitem" >
+	<result column="id" property="id"/>
+	<result column="new_type" property="new_type"/>
+	<result column="author" property="author"/>
+	<result column="content" property="content"/>
+	<result column="description" property="description"/>
+	<result column="imagePath" property="imagePath"/>
+	<result column="sorting" property="sorting"/>
+	<result column="title" property="title"/>
+	<result column="templateid" property="templateid"/>
+	<result column="url" property="url"/>
+	<result column="create_date" property="create_date"/>
+	<result column="accountid" property="accountid"/>
+</resultMap>
+       
+<!-- weixin_newsitem table all fields -->
+<sql id="Base_Column_List" >
+	 id,new_type,author,content,description,imagePath,sorting,title,templateid,url,create_date,accountid
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="new_type != null and new_type != ''" >
+	    and new_type =  #{new_type}
+	</if>
+	 	<if test="author != null and author != ''" >
+	    and author =  #{author}
+	</if>
+	 	<if test="content != null and content != ''" >
+	    and content =  #{content}
+	</if>
+	 	<if test="description != null and description != ''" >
+	    and description =  #{description}
+	</if>
+	 	<if test="imagePath != null and imagePath != ''" >
+	    and imagePath =  #{imagePath}
+	</if>
+	<if test="sorting != null" >
+	    and sorting =  #{sorting}
+	</if>
+	 	<if test="title != null and title != ''" >
+	    and title =  #{title}
+	</if>
+	<if test="templateid != null" >
+	    and templateid =  #{templateid}
+	</if>
+	 	<if test="url != null and url != ''" >
+	    and url =  #{url}
+	</if>
+	<if test="create_date != null" >
+	    and create_date =  #{create_date}
+	</if>
+	<if test="accountid != null" >
+	    and accountid =  #{accountid}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into weixin_newsitem(id,new_type,author,content,description,imagePath,sorting,title,templateid,url,create_date,accountid)
+ values(#{id},#{new_type},#{author},#{content},#{description},#{imagePath},#{sorting},#{title},#{templateid},#{url},now(),#{accountid})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update weixin_newsitem set new_type=#{new_type},author=#{author},content=#{content},description=#{description},imagePath=#{imagePath},sorting=#{sorting},title=#{title},templateid=#{templateid},url=#{url},create_date=#{create_date},accountid=#{accountid} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update weixin_newsitem set 
+	<trim  suffixOverrides="," >
+	<if test="new_type != null  and new_type != '' ">
+		new_type=#{new_type},
+	</if>
+	<if test="author != null  and author != '' ">
+		author=#{author},
+	</if>
+	<if test="content != null  and content != '' ">
+		content=#{content},
+	</if>
+	<if test="description != null  and description != '' ">
+		description=#{description},
+	</if>
+	<if test="imagePath != null  and imagePath != '' ">
+		imagePath=#{imagePath},
+	</if>
+	<if test="sorting != null  ">
+		sorting=#{sorting},
+	</if>
+	<if test="title != null  and title != '' ">
+		title=#{title},
+	</if>
+	<if test="templateid != null  ">
+		templateid=#{templateid},
+	</if>
+	<if test="url != null  and url != '' ">
+		url=#{url},
+	</if>
+	<if test="create_date != null  ">
+		create_date=#{create_date},
+	</if>
+	<if test="accountid != null  ">
+		accountid=#{accountid},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from weixin_newsitem where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 图文消息表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_newsitem where id = #{id}
+</select>
+
+<!-- 图文消息表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from weixin_newsitem 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询图文消息表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from weixin_newsitem 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

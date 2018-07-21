@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.mapper.SysOrgMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.base.bean.SysOrg" >
+	<result column="id" property="id"/>
+	<result column="name" property="name"/>
+	<result column="pid" property="pid"/>
+	<result column="describe" property="describe"/>
+	<result column="createdTime" property="createdTime"/>
+	<result column="principal" property="principal"/>
+	<result column="createdBy" property="createdBy"/>
+	<result column="deleted" property="deleted"/>
+</resultMap>
+
+<sql id="Base_Column_List" >
+	id,`name`,pid,`describe`,createdTime,principal,createdBy,deleted
+</sql>
+       
+<sql id="update_sysOrg">
+	<if test="name!=null">
+		`name`=#{name},`describe`=#{describe},principal=#{principal},createdBy=#{createdBy} where id=#{id} 
+	</if>
+	<if test="deleted!=null">
+		deleted=#{deleted} where id=#{id} 
+	</if>	
+</sql>
+
+<!-- 查询组织机构 -->
+<select id="getOrgList" resultMap="BaseResultMap">
+	select 
+	<include refid="Base_Column_List" /> 
+	from sys_org  
+	where deleted=0
+</select>
+
+<!-- 根据pid  查询出id -->
+<select id="getOrgByOrgId" resultType="int" parameterType="int">
+	select id 
+	from sys_org 
+	where deleted=0 and pid = #{pid}
+</select>
+
+<!-- 根据id 查询组织机构 -->
+<select id="getOrgById" resultType="com.base.bean.SysOrg">
+	select so.<include refid="Base_Column_List" />,
+	(select name from sys_org so2 where so2.id=so.pid) as orgName,
+	(select su.nickName from sys_user su where so.createdBy=su.id ) as createName,
+	(select su.nickName from sys_user su where so.principal=su.id ) as principalName
+	from sys_org so 
+	where id=#{id}
+</select>
+
+<!-- 添加组织机构 -->
+<insert id="addOrgNodes" parameterType="com.base.bean.SysOrg">
+	insert into sys_org(pid,`name`,`describe`,createdTime,deleted,createdBy,principal) values(#{pid},#{name},#{describe},#{createdTime},#{deleted},#{createdBy},#{principal})
+</insert>
+
+<!-- 根据id 修改组织机构 -->
+<update id="updateOrgNodes"  parameterType="com.base.bean.SysOrg">
+	update sys_org set <include refid="update_sysOrg"/> 
+</update>
+
+<!--移动树的节点 -->
+<update id="zTreeOnDrop"  parameterType="com.base.bean.SysOrg">
+	update sys_org set pid=#{pid} where id=#{id}
+</update>
+
+
+<!-- 查询组织机构下的人员 -->
+<select id="queryByUser" parameterType="Object" resultMap="BaseResultMap">
+	select su.id as userId,su.nickName AS name,su.orgId AS pid from
+	 sys_user AS su 
+	 where 1=1
+	<if test="name != null  and name != '' ">
+		and `nickName` like CONCAT("%",#{name},"%")
+	</if>
+	
+	<if test="isVisual != null  and isVisual != '' ">
+		and isVisual = #{isVisual}
+	</if>
+	
+	<if test="isManager != null  and isManager != '' ">
+		and isManager = #{isManager}
+	</if>
+	<if test="isTeamLeader != null  and isTeamLeader != '' ">
+		and isTeamLeader = #{isTeamLeader}
+	</if>
+	
+	
+	<if test="excludeManager != null    ">
+		and isVisual = 0
+		and isManager = 0
+	</if>
+	
+	
+	
+	
+	
+</select>
+
+</mapper>   

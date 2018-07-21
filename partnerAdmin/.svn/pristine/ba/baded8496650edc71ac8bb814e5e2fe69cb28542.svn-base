@@ -1,0 +1,767 @@
+/*预定义颜色*/
+@border-color-blue: #269edb;
+/*预定义颜色*/
+
+/*预定义CSS*/
+.noWrap {
+  word-break: keep-all; /* 不换行 */
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+
+/*预定义CSS*/
+
+
+/****企业首页开始****/
+.indexPage {
+  .header {
+    height: 90px;
+    border-bottom: 2px solid @border-color-blue;
+    .logo {
+      cursor: default;
+      padding: 0 20px;
+      line-height: 88px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .menuList {
+      li {
+        float: left;
+        margin-left: 20px;
+      }
+      a {
+        display: block;
+        padding: 0 25px;
+        line-height: 87px;
+        font-size: 20px;
+        border-bottom: 1px solid transparent;
+        &:hover, &.active {
+          border-bottom: 1px solid @border-color-blue;
+        }
+        &:hover {
+          color: @border-color-blue;
+        }
+      }
+      .logins {
+        a {
+          line-height: 82px;
+          height: 88px;
+          padding: 0;
+          font-size: 14px;
+          display: inline-block;
+          border: 0;
+          &:hover {
+            color: @border-color-blue;
+          }
+        }
+      }
+    }
+  }
+  .content {
+    position: relative;
+    width: 100%;
+    height: 727px;
+    background: url(../images/indexBg.png) no-repeat center center;
+    background-size: 100% 100%;
+  }
+  .main {
+    padding: 80px 0 85px;
+    .titleBox {
+      color: #fff;
+      .titleImg {
+        width: 588px;
+        height: 45px;
+        background: url(../images/indexTXT.png) no-repeat left center;
+        margin-bottom: 50px;
+      }
+      a {
+        display: block;
+        height: 35px;
+        padding-left: 100px;
+        line-height: 30px;
+        color: #fff;
+        font-size: 24px;
+        background: url(../images/right.png) no-repeat 60px 1px;
+      }
+    }
+    .register {
+      width: 260px;
+      border: 1px solid #ccc;
+      background: #f2f2f4;
+      padding: 19px 29px;
+      border-radius: 4px;
+      .button {
+        width: 100%;
+        height: 50px;
+        line-height: 38px;
+        text-align: center;
+        font-size: 16px;
+      }
+      .toLogin {
+        margin-bottom: 11px;
+
+      }
+      .formGroup {
+        .input, h4, .selectBox {
+          margin-bottom: 11px;
+        }
+        .input {
+          border: 0;
+        }
+        .selectBox {
+          position: relative;
+          cursor: default;
+          .selectList {
+            border: 0;
+            height: 34px;
+            padding: 6px;
+            border-radius: 4px;
+            overflow: hidden;
+            width: 100%;
+            color: #606060;
+          }
+        }
+        .button {
+          margin-top: 11px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(211, 217, 237, .6);
+    .wd1200 {
+      padding: 20px;
+    }
+    .media {
+      .circleBox {
+        display: block;
+        width: 80px;
+        height: 80px;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      strong {
+        display: block;
+        padding: 6px 0;
+        font-size: 24px;
+      }
+      p {
+        font-size: 18px;
+      }
+      .gongxinag {
+        background-image: url(../images/gongxiang.png);
+      }
+      .huhuan {
+        background-image: url(../images/huhuan.png);
+      }
+    }
+  }
+}
+
+/****企业首页结束****/
+
+/****确认商机开始****/
+.sureBOPage {
+  padding-left: 28px !important;
+  .btnGroup {
+    padding: 20px 0;
+    .fl {
+      .button {
+        margin-right: 10px;
+        cursor: pointer;
+        min-width: 100px;
+        text-align: center;
+      }
+    }
+    .fr {
+      .button, ul {
+        min-width: 130px;
+      }
+    }
+  }
+  .tableBox {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-right: 0;
+    border-bottom: 0;
+    li {
+      clear: both;
+      & > div {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 8px;
+        text-align: center;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        .noWrap;
+      }
+      &.title {
+        & > div {
+          padding: 0;
+          font-weight: bold;
+          background: #f5f5f5;
+        }
+      }
+      .num {
+        width: 70px;
+      }
+      .customerName, .customerPost, .dealerName, .demandType, .status {
+        width: 80px;
+      }
+      .dealerTime {
+        width: 90px;
+      }
+      .customerTel, .dealerTel {
+        width: 105px;
+      }
+      .description, .customerCp {
+        width: 100px;
+      }
+      &.title .num {
+        padding: 0 10px;
+      }
+      .worry {
+        color: #f99543;
+      }
+      .info {
+        color: @border-color-blue;
+      }
+      .success {
+        color: #338f13;
+      }
+    }
+  }
+}
+/*确认商机弹窗*/
+.surePop{
+  width: 600px;
+  .container-layout{
+    padding: 20px 0;
+    .x12.text-center{
+      color: #969696;
+    }
+  }
+  .x12{
+    margin-bottom: 20px;
+    .x4{
+      line-height: 34px;
+      padding-right: 10px;
+    }
+    .x8{
+      .input{
+        width: 90%;
+      }
+    }
+    select{
+      height: 32px;
+      border-radius: 4px;
+      width: 90%;
+      border: 1px solid #ddd;
+      color: #909090;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.075) inset;
+    }
+  }
+  .x10{
+    border: 1px solid orange;
+    padding:6px 5px 6px 15px;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 4px;
+    color: #636363;
+    .total{
+      color: #333;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+  }
+}
+/*确认商机弹窗*/
+/****确认商机结束****/
+
+/****合作登记开始****/
+.cooperationRegisteredPage {
+  padding-left: 28px !important;
+  .btnGroup {
+    margin: 20px 0;
+    .button {
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  }
+  .tableBox {
+    border: 1px solid #ccc;
+    border-right: 0;
+    border-bottom: 0;
+    margin-bottom: 20px;
+    li {
+      clear: both;
+      & > div {
+        float: left;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        width: 150px;
+        height: 50px;
+        text-align: center;
+        padding: 0 8px;
+        line-height: 49px;
+        .noWrap;
+      }
+      .num {
+        width: 70px;
+      }
+      &.title {
+        & > div {
+          font-weight: bold;
+          background: #f5f5f5;
+        }
+      }
+    }
+  }
+}
+/*合作登记弹窗*/
+.CRPop{
+  .content{
+    padding: 20px;
+  }
+  .rows{
+    margin-bottom: 20px;
+    .fl,.fr{
+      height: 34px;
+      line-height: 34px;
+    }
+    .fr{
+      width: 480px;
+      span{
+        display:inline-block;
+        text-align: center;
+        width: 20px;
+        margin-right: 10px;
+      }
+      select{
+        width: 240px;
+      }
+    }
+    .inputTitle{
+      text-align: center;
+      width: 80px;
+      line-height: 34px;
+    }
+    .input{
+      width: 240px;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .radioBox{
+      margin-bottom: 10px;
+      input{
+        display: none;
+      }
+      label{
+        display: inline-block;
+        width: 120px;
+        i{
+          display: inline-block;
+          position: relative;
+          top:2px;
+          width: 16px;
+          height: 16px;
+          margin-right: 10px;
+          border-radius: 50%;
+          background-color:#ccc;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+        &.active{
+          i{
+            background-color: orange;
+            background-image:url(../images/ratio.png);
+          }
+        }
+      }
+    }
+    .rewardTip{
+      display: inline-block;
+      position: relative;
+      padding-left: 24px;
+      background: url(../images/helpTip.png) no-repeat 5px center;
+      .tipBody{
+        display: none;
+        position: absolute;
+        bottom:100%;
+        left:0;
+        width: 200px;
+        line-height: 20px;
+        border:1px solid #ccc;
+        padding:  6px 10px;
+        color: #636363;
+      }
+      &:hover{
+        .tipBody{
+          display: block;
+        }
+      }
+    }
+  }
+}
+/*合作登记弹窗*/
+/*回款记录弹窗*/
+.PRPop{
+  .content{
+    padding: 20px;
+    .tableBox{
+      padding: 10px 0 20px;
+      ul{
+        width: 480px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-right: 0;
+        border-bottom: 0;
+        li{
+          clear: both;
+         >div{
+           width: 80px;
+           float:left;
+           height: 50px;
+           line-height: 50px;
+           text-align: center;
+           border-right: 1px solid #ccc;
+           border-bottom: 1px solid #ccc;
+         }
+          .long{
+            width: 159px;
+          }
+          .checkbox1,.checkboxAll1{
+            padding-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+/*回款记录弹窗*/
+/****合作登记结束****/
+
+/******支付处理开始****/
+.paymentProcessPage{
+  .dataPanel{
+    margin-top: 20px;
+    padding: 20px;
+    background: #fffaee;
+    border: 1px solid #f99543;
+    .dateBox{
+      position: relative;
+      width: 200px;
+      .datainp{
+        width: 200px;
+        margin-bottom: 20px;
+        border: 1px #ccc solid;
+        padding: 5px;
+        padding-right: 35px;
+        height: 30px;
+        line-height: 30px;
+      }
+      .dateIcon{
+        position: absolute;
+        top:0;
+        right:0;
+        width: 30px;
+        height: 30px;
+        background: url(../images/dateIcon.png) no-repeat left center;
+      }
+    }
+
+  }
+  .btnGroup{
+    margin-top: 20px;
+    .button{
+      min-width: 100px;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+  .tableBox{
+    margin-top: 20px;
+    ul{
+      border: 1px solid #ccc;
+      border-right: 0;
+      border-bottom: 0;
+    }
+    li{
+      &.title>div{
+       background: #f5f5f5;
+        font-weight: bold;
+      }
+      clear: both;
+      >div{
+        float: left;
+        height: 50px;
+        line-height: 49px;
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        text-align: center;
+        padding:0 8px;
+        .noWrap;
+      }
+      .num,.name{
+        width: 80px;
+      }
+      .money{
+        width: 90px;
+      }
+      .detailsTxt{
+        width: 130px;
+      }
+      .bankNum,.handlingTime,.status{
+        width: 150px;
+      }
+      .others{
+        width:140px;
+      }
+      .detailsTxt{
+        >div{
+          line-height: 24px;
+          text-align: left;
+          .noWrap;
+        }
+      }
+    }
+  }
+  .pagination{
+    margin: 20px 0 30px;
+  }
+
+}
+/*提示弹窗*/
+.tipPop{
+  .content{
+    padding: 70px 20px;
+    text-align: center;
+    font-size: 24px;
+  }
+}
+/*提示弹窗*/
+/*****支付处理结束*****/
+
+/******商机评级******/
+.businessRatingPage{
+  .panel{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding:20px;
+    box-shadow: 0 1px 1px 1px #eee;
+    h4{
+      font-weight: bold;
+    }
+    .rewardTip{
+      display: inline-block;
+      position: relative;
+      padding-left: 24px;
+      background: url(../images/helpTip.png) no-repeat 5px center;
+      .tipBody{
+        display: none;
+        position: absolute;
+        bottom:30px;
+        left:0;
+        width: 200px;
+        line-height: 20px;
+        border:1px solid #ccc;
+        padding:  6px 10px;
+        color: #636363;
+        background: #fff;
+      }
+      &:hover{
+        .tipBody{
+          display: block;
+        }
+      }
+    }
+    .inputBody{
+      width: 600px;
+      margin: 20px auto 30px;
+      .line{
+        margin-bottom: 20px;
+      }
+      .total{
+        line-height: 34px;
+        width: 70px;
+        padding-right: 10px;
+        text-align: right;
+      }
+      .input{
+        width: 200px;
+        background: #fafafa;
+      }
+    }
+    .btnGroup{
+      padding: 30px 0;
+      border-top: 1px dashed #ccc;
+      .button{
+        min-width: 100px;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+  }
+}
+/******商机评级*****/
+
+/*****公司业务开始*****/
+.companyBusinessPage{
+  .panel{
+    padding:0 20px;
+    box-shadow: 0 1px 1px 1px #eee;
+    .panel-body{
+      h2{
+        font-size: 24px;
+      }
+      .tableBox{
+        width: 381px;
+        border: 1px solid #ccc;
+        border-bottom: 0;
+        border-right: 0;
+        margin: 10px auto 20px;
+        li{
+          clear: both;
+          >div{
+            width: 300px;
+            float: left;
+            height: 50px;
+            padding-left: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            line-height: 49px;
+          }
+          .num{
+            width: 80px;
+          }
+        }
+      }
+    }
+    .panel-foot{
+      background: #fff;
+      padding: 20px 0;
+      border-top: 1px dashed #ddd;
+      .button{
+        width: 120px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 0 6px;
+      }
+    }
+  }
+}
+/*输入内容弹窗*/
+.textareaPop{
+  .content{
+    padding: 25px 20px 30px;
+    textarea{
+      width: 100%;
+      max-width: 560px;
+      height: 90px;
+    }
+  }
+}
+/*输入内容弹窗*/
+/*****公司业务结束*****/
+
+
+/****消息页面开始*****/
+.messagePage{
+  h3.mainTitle {
+    font-size: 20px;
+    height: 37px;
+    border-bottom: 1px solid #ebebeb;
+    cursor: default;
+  }
+  .btnGroup{
+    margin: 20px 0;
+    .button{
+      margin-right: 10px;
+      min-width: 100px;
+      text-align: center;
+    }
+  }
+  .msgBox{
+    margin-bottom: 75px;
+    li{
+      border: 1px solid #ccc;
+      border-top: 0;
+      *zoom: 1;
+      &:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+      }
+      .num{
+        padding: 20px;
+        width: 100px;
+        color: #969696;
+        span{
+          margin-left: 5px;
+        }
+      }
+      &.title{
+        border: 1px solid #f99543;
+        font-weight: bold;
+        background: #fffaee;
+        .num{
+          color: #333;
+        }
+        h4.total{
+          position: relative;
+          top:2px;
+        }
+      }
+      .content{
+        padding: 20px 100px 20px 0;
+        position: relative;
+        width: 1058px;
+        h4.total{
+          font-size: 14px;
+          font-weight: bold;
+          height: 24px;
+          line-height: 22px;
+          .noWrap;
+        }
+        .text{
+          color: #636363;
+          .noWrap;
+        }
+        .btn-ab{
+          display: block;
+          position: absolute;
+          width: 80px;
+          height: 30px;
+          top:27px;
+          right:20px;
+          text-align: center;
+          line-height: 30px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: bold;
+          color: #b2b2b2;
+          &:hover{
+            color: @border-color-blue;
+          }
+        }
+      }
+    }
+  }
+}
+/****消息页面结束*****/

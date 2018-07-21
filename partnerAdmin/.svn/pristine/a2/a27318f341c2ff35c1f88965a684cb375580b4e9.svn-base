@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StWebUserMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StWebUser" >
+	<result column="id" property="id"/>
+	<result column="nickname" property="nickname"/>
+	<result column="phone" property="phone"/>
+	<result column="recipient" property="recipient"/>
+	<result column="banktype" property="banktype"/>
+	<result column="cardno" property="cardno"/>
+	<result column="password" property="password"/>
+	<result column="recommendcode" property="recommendcode"/>
+	<result column="type" property="type"/>
+	<result column="intro" property="intro"/>
+	<result column="insize" property="insize"/>
+	<result column="specialty" property="specialty"/>
+	<result column="score" property="score"/>
+	<result column="status" property="status"/>
+	<result column="evaluatescore" property="evaluatescore"/>
+	<result column="evaluatenum" property="evaluatenum"/>
+	<result column="companyname" property="companyname"/>
+	<result column="qq" property="qq"/>
+	<result column="email" property="email"/>
+	<result column="website" property="website"/>
+	<result column="wechat" property="wechat"/>
+	<result column="logo" property="logo"/>
+	<result column="gettime" property="gettime"/>
+	<result column="reson" property="reson"/>
+	<result column="getscore" property="getscore"/>
+	<result column="exchangescore" property="exchangescore"/>
+</resultMap>
+       
+<!-- st_web_user table all fields -->
+<sql id="Base_Column_List" >
+	 id,nickname,phone,recipient,banktype,cardno,password,recommendcode,
+	 type,intro,insize,specialty,score,status,companyname,qq,email,website,wechat,logo
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="nickname != null and nickname != ''" >
+	    and nickname like  CONCAT('%',#{nickname},'%') 
+	</if>
+	 	<if test="phone != null and phone != ''" >
+	    and phone =  #{phone}
+	</if>
+	 	<if test="recipient != null and recipient != ''" >
+	    and recipient =  #{recipient}
+	</if>
+	 	<if test="banktype != null and banktype != ''" >
+	    and banktype =  #{banktype}
+	</if>
+	 	<if test="cardno != null and cardno != ''" >
+	    and cardno =  #{cardno}
+	</if>
+	 	<if test="password != null and password != ''" >
+	    and password =  #{password}
+	</if>
+	<if test="recommendcode != null" >
+	    and recommendcode =  #{recommendcode}
+	</if>
+	<if test="type != null" >
+	    and type =  #{type}
+	</if>
+	<if test="intro != null and intro != ''" >
+	    and intro =  #{intro}
+	</if>
+	 	<if test="insize != null and insize != ''" >
+	    and insize =  #{insize}
+	</if>
+	 	<if test="specialty != null and specialty != ''" >
+	    and specialty =  #{specialty}
+	</if>
+	<if test="score != null" >
+	    and score =  #{score}
+	</if>
+	<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<if test="industryid != null and companyname != ''" >
+		and id IN(select userid from st_opportunities_industry_user where industryid=#{industryid})
+	</if>
+	<if test="companyname != null and companyname != ''">
+		and companyname = #{companyname}
+	</if>
+	<if test="wechat != null and wechat != ''">
+		and wechat = #{wechat}
+	</if>
+	<if test="logo != null">
+		and logo = #{logo}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into st_web_user(id,nickname,phone,recipient,banktype,cardno,password,recommendcode,
+  	type,intro,insize,specialty,score,status,companyname,qq,email,website,wechat,logo)
+ values(#{id},#{nickname},#{phone},#{recipient},#{banktype},#{cardno},#{password},#{recommendcode},
+ 	#{type},#{intro},#{insize},#{specialty},#{score},#{status},#{companyname},#{qq},#{email},#{website},
+ 	#{wechat},#{logo})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_web_user set nickname=#{nickname},phone=#{phone},recipient=#{recipient},banktype=#{banktype},
+  	cardno=#{cardno},password=#{password},recommendcode=#{recommendcode},type=#{type},intro=#{intro},insize=#{insize},
+  	specialty=#{specialty},score=#{score},status=#{status},companyname=#{companyname},qq=#{qq},email=#{email},
+  	website=#{website},wechat=#{wechat},logo=#{logo} where id=#{id}
+ </update>
+ 
+ <update id="updateScore" parameterType="Object" >
+  update st_web_user set score=score-#{score,jdbcType=DOUBLE} where id=#{userid,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_web_user set 
+	<trim  suffixOverrides="," >
+	<if test="nickname != null  and nickname != '' ">
+		nickname=#{nickname},
+	</if>
+	<if test="phone != null  and phone != '' ">
+		phone=#{phone},
+	</if>
+	<if test="recipient != null  and recipient != '' ">
+		recipient=#{recipient},
+	</if>
+	<if test="banktype != null  and banktype != '' ">
+		banktype=#{banktype},
+	</if>
+	<if test="cardno != null  and cardno != '' ">
+		cardno=#{cardno},
+	</if>
+	<if test="password != null  and password != '' ">
+		password=#{password},
+	</if>
+	<if test="recommendcode != null  ">
+		recommendcode=#{recommendcode},
+	</if>
+	<if test="type != null  ">
+		type=#{type},
+	</if>
+	<if test="intro != null  ">
+		intro=#{intro},
+	</if>
+	<if test="insize != null  and insize != '' ">
+		insize=#{insize},
+	</if>
+	<if test="specialty != null  and specialty != '' ">
+		specialty=#{specialty},
+	</if>
+	<if test="score != null  ">
+		score=#{score},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	<if test="companyname != null and companyname != ''">
+		companyname=#{companyname},
+	</if>
+	<if test="qq != null and qq != ''">
+		qq=#{qq},
+	</if>
+	<if test="email != null and email != ''">
+		email=#{email},
+	</if>
+	<if test="website != null and website != ''">
+		website=#{website},
+	</if>
+	<if test="wechat != null and wechat != ''">
+		wechat=#{wechat},
+	</if>
+	<if test="logo != null">
+		logo=#{logo},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_web_user where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 用户表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_web_user where id = #{id}
+</select>
+
+<!-- 用户表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_web_user 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询行业对应企业列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select swu.*,
+	(select (AVG(confirmspeed)+AVG(coopattitude)+AVG(paynum))/3 as avgscore
+	from st_opportunities_evaluate_company soec where soec.userid =swu.id) as evaluatescore,
+	(select count(1)
+	from st_opportunities_evaluate_company soec where soec.userid =swu.id) as evaluatenum
+	from st_web_user swu
+	<include refid="Example_Where_Clause"/>
+	ORDER BY evaluatescore DESC
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<!-- 注册检查 -->
+<select id="queryForRegister" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_web_user
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+
+
+<!-- 根据手机号查询 用户表 -->
+<select id="queryByPhone" resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_web_user where phone = #{phone}
+</select>
+
+<!-- 根据用户名和密码查询 用户表 -->
+<select id="queryForLogin" resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" />
+	from st_web_user where phone = #{phone} and password = #{password}
+</select>
+  	
+<!-- 支付处理信息 -->
+<select id="queryForPayoff" resultType="com.business.bean.StWebUser" parameterType="Object">
+
+SELECT
+	swu.id,
+	swu.recipient,
+	swu.cardno,
+	(
+		(
+			SELECT
+				sum(backamount)
+			FROM
+				st_opportunities_cooperation_cashback socc
+			WHERE
+				socc.`status` = 1
+			AND EXISTS (
+				SELECT
+					1
+				FROM
+					st_opportunities_cooperation soc
+				WHERE
+					socc.cooid = soc.id
+				AND soc.`status` = 4
+				AND EXISTS (
+					SELECT
+						1
+					FROM
+						st_opportunities_recommend sor
+					WHERE
+						sor.userid = #{userid}
+					AND sor.paystatus = 1
+					AND sor.issuserid = swu.id
+					AND sor.checkstatus = 2
+					AND soc.opprecommendid = sor.id
+				)
+			)
+		) + (
+			SELECT
+				sum(sor.paynum)
+			FROM
+				st_opportunities_recommend sor
+			WHERE
+				sor.userid = #{userid}
+			AND sor.paystatus = 1
+			AND sor.issuserid = swu.id
+			AND sor.checkstatus = 2
+		)
+	) AS money,
+	(
+		SELECT
+			GROUP_CONCAT(id)
+		FROM
+			st_opportunities_recommend sor
+		WHERE
+			sor.userid = #{userid}
+		AND sor.paystatus = 1
+		AND sor.issuserid = swu.id
+		AND sor.checkstatus = 2
+	) AS opprecommendid,
+	(
+		SELECT
+			GROUP_CONCAT(id)
+		FROM
+			st_opportunities_cooperation soc
+		WHERE
+			soc.`status` = 4
+		AND EXISTS (
+			SELECT
+				1
+			FROM
+				st_opportunities_recommend sor
+			WHERE
+				sor.userid = #{userid}
+			AND sor.paystatus = 1
+			AND sor.issuserid = swu.id
+			AND sor.checkstatus = 2
+			AND soc.opprecommendid = sor.id
+		)
+	) AS cooid
+FROM
+	st_web_user swu
+WHERE
+	EXISTS (
+		SELECT
+			1
+		FROM
+			st_opportunities_recommend sor
+		WHERE
+			sor.userid = #{userid}
+		AND sor.checkstatus = 2
+		AND swu.id = sor.issuserid
+	)
+
+</select>  	  	
+
+
+<!-- 查询recommendid和cashbackid -->
+<select id="queryRCid" resultType="com.business.bean.StWebUser" parameterType="Object">
+  SELECT
+	GROUP_CONCAT(id) AS opprecommendid,
+	(
+		SELECT
+			GROUP_CONCAT(id)
+		FROM
+			st_opportunities_cooperation_cashback socc
+		WHERE
+			socc.`status` = 1
+		AND EXISTS (
+			SELECT
+				1
+			FROM
+				st_opportunities_cooperation soc
+			WHERE
+				socc.cooid = soc.id
+			AND soc.`status` = 4
+			AND EXISTS (
+				SELECT
+					1
+				FROM
+					st_opportunities_recommend sor
+				WHERE
+					sor.userid = #{userid}
+				AND sor.paystatus = 1
+				AND sor.issuserid = #{id}
+				AND sor.checkstatus = 2
+				AND soc.opprecommendid = sor.id
+			)
+		)
+	) AS cashbackid
+FROM
+	st_opportunities_recommend sor
+WHERE
+	sor.userid = #{userid}
+AND sor.paystatus = 1
+AND sor.issuserid = #{id}
+AND sor.checkstatus = 2
+  
+</select>
+
+<select id="queryForAdmin" resultType="com.business.bean.StWebUser" parameterType="Object">
+	SELECT swu.*,
+	(SELECT count(1) from st_resume sr where swu.id=sr.uploadby) as uploadresumesum,
+	(SELECT count(1) from st_opportunities so where swu.id=so.issuserid) as recommendoppsum,
+	(SELECT count(1) from st_opportunities_recommend sor where swu.id=sor.userid) as recieveoppnum
+	from st_web_user swu
+	where swu.type=#{type}
+	<if test="nickname != null and nickname != ''" >
+	    and swu.nickname like  CONCAT('%',#{nickname},'%') 
+	</if>
+	<if test="phone != null and phone != ''" >
+	    and swu.phone = #{phone}
+	</if>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+	
+</select>	
+
+<select id="queryForAdminCount" resultType="java.lang.Integer"  parameterType="Object">
+	 SELECT  count(1)
+	from st_web_user swu
+	where swu.type=#{type}
+	<if test="nickname != null and nickname != ''" >
+	    and swu.nickname like  CONCAT('%',#{nickname},'%') 
+	</if>
+	<if test="phone != null and phone != ''" >
+	    and swu.phone = #{phone}
+	</if>
+</select>
+
+
+
+
+
+<select id="queryForScore" resultType="com.business.bean.StWebUser" parameterType="Object">
+	select  u.nickname,s.gettime gettime,s.reson reson,s.getscore getscore,ex.exchangescore exchangescore
+	from st_web_user u LEFT JOIN st_resume_scorerecord s on u.id =s.userid 
+	LEFT JOIN st_resume_exchangerecord ex on u.id=ex.userid
+	where 1=1 
+	<if test="nickname != null and nickname != ''" >
+	    and u.nickname like  CONCAT('%',#{nickname},'%') 
+	</if>
+	
+
+	GROUP BY  nickname,gettime,reson,getscore,exchangescore 
+	ORDER BY s.gettime desc
+</select>
+
+<!-- 根据姓名模糊查询 -->
+<select id="selectStWebUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from st_web_user where ${value}
+</select>
+
+  	
+ <select id="selectStWebUserByphone" resultType="com.business.bean.StWebUser" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from st_web_user where 1=1
+</select>
+
+<select id="queryByCountUser" resultType="java.lang.Integer"  parameterType="java.lang.String">
+	select count(1) from st_web_user where ${value}
+</select>
+  	
+  	
+  	
+  	
+</mapper>   

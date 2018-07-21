@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.mapper.SysLogMapper" > 
+<!-- Result Map--> 	
+<resultMap id="BaseResultMap" type="com.base.bean.SysLog" >
+	<result column="id" property="id"/>
+	<result column="userId" property="userId"/>
+	<result column="operationTime" property="operationTime"/>
+	<result column="operation" property="operation"/>
+	<result column="url" property="url"/>
+	<result column="details" property="details"/>
+	<result column="moduleName" property="moduleName"/>
+</resultMap>
+
+<!-- site_news table all fields -->
+<sql id="Base_Column_List" >
+	 id,userId,operationTime,operation,url,details,moduleName
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="moduleName != null and moduleName != ''" >
+	     and moduleName like CONCAT('%', #{moduleName}, '%')
+	</if>
+	 <if test="operation != null and operation != ''" >
+	    and operation like CONCAT('%', #{operation}, '%')
+	</if>
+	<if test="minOperationTime != null and minOperationTime != '' and maxOperationTime != null and maxOperationTime != ''" >
+	    and operationTime <![CDATA[ >=  ]]> #{minOperationTime} and operationTime <![CDATA[ <=  ]]> #{maxOperationTime}
+	</if>	
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  insert into sys_log(userId,operationTime,operation,url,details,moduleName)
+   values(#{userId},#{operationTime},#{operation},#{url},#{details},#{moduleName})
+</insert>
+
+
+
+<!--  日记记录列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_log 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询日志记录列表 -->
+<select id="queryByList" resultType="com.base.bean.SysLog"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_log 
+	<include refid="Example_Where_Clause"/>
+		<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<select id="foundByList" resultType="com.base.bean.SysLog"  parameterType="Object">
+	SELECT hour(operationTime) as loginTime,count(*) as loginCount 
+	from sys_log  
+	<include refid="Example_Where_Clause"/> and operation ='用户登录' group by hour(operationTime)  
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+	
+</select>
+
+  	
+</mapper>   

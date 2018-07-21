@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.mapper.WeixinSubscribeMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.weixin.bean.WeixinSubscribe" >
+	<result column="id" property="id"/>
+	<result column="accountid" property="accountid"/>
+	<result column="addTime" property="addTime"/>
+	<result column="msgType" property="msgType"/>
+	<result column="templateid" property="templateid"/>
+	<result column="templateName" property="templateName"/>
+</resultMap>
+       
+<!-- weixin_subscribe table all fields -->
+<sql id="Base_Column_List" >
+	 id,accountid,addTime,msgType,templateid,templateName
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+ 	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="accountid != null " >
+	    and accountid =  #{accountid}
+	</if>
+	 	<if test="addTime != null and addTime != ''" >
+	    and addTime =  #{addTime}
+	</if>
+	 	<if test="msgType != null and msgType != ''" >
+	    and msgType =  #{msgType}
+	</if>
+	 	<if test="templateid != null " >
+	    and templateid =  #{templateid}
+	</if>
+	 	<if test="templateName != null and templateName != ''" >
+	    and templateName =  #{templateName}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into weixin_subscribe(id,accountid,addTime,msgType,templateid,templateName)
+ values(#{id},#{accountid},#{addTime},#{msgType},#{templateid},#{templateName})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update weixin_subscribe set accountid=#{accountid},addTime=#{addTime},msgType=#{msgType},templateid=#{templateid},templateName=#{templateName} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update weixin_subscribe set 
+	<trim  suffixOverrides="," >
+	<if test="accountid != null  ">
+		accountid=#{accountid},
+	</if>
+	<if test="addTime != null  and addTime != '' ">
+		addTime=#{addTime},
+	</if>
+	<if test="msgType != null  and msgType != '' ">
+		msgType=#{msgType},
+	</if>
+	<if test="templateid != null  ">
+		templateid=#{templateid},
+	</if>
+	<if test="templateName != null  and templateName != '' ">
+		templateName=#{templateName},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from weixin_subscribe where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 微信公众平台账户 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_subscribe where id = #{id}
+</select>
+<!-- 根据accountid查询  -->
+<select id="queryByAccountId"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_subscribe where accountid = #{accountid}
+</select>
+<!-- 微信公众平台账户 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from weixin_subscribe 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询微信公众平台账户列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from weixin_subscribe 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

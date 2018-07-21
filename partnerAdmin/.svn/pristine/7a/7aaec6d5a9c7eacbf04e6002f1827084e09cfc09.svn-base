@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StResumeActivitiesMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StResumeActivities" >
+	<result column="id" property="id"/>
+	<result column="title" property="title"/>
+	<result column="homeimg" property="homeimg"/>
+	<result column="startdate" property="startdate"/>
+	<result column="enddate" property="enddate"/>
+	<result column="uploadleast" property="uploadleast"/>
+	<result column="intro" property="intro"/>
+	<result column="introContent" property="introContent"/>
+	<result column="uploadnum" property="uploadnum"/>
+	<result column="industryid" property="industryid"/>
+	<result column="signupend" property="signupend"/>
+	<result column="uploadstart" property="uploadstart"/>
+	<result column="uploadend" property="uploadend"/>
+	<result column="downloadstart" property="downloadstart"/>
+</resultMap>
+       
+<!-- st_resume_activities table all fields -->
+<sql id="Base_Column_List" >
+	 id,title,homeimg,startdate,enddate,uploadleast,intro,introContent,uploadnum,industryid,signupend,uploadstart,uploadend,downloadstart
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="title != null and title != ''" >
+	    and title =  #{title}
+	</if>
+	 	<if test="homeimg != null and homeimg != ''" >
+	    and homeimg =  #{homeimg}
+	</if>
+	<if test="startdate != null" >
+	    and startdate =  #{startdate}
+	</if>
+	<if test="enddate != null" >
+	    and enddate =  #{enddate}
+	</if>
+	<if test="uploadleast != null" >
+	    and uploadleast =  #{uploadleast}
+	</if>
+	 	<if test="intro != null and intro != ''" >
+	    and intro =  #{intro}
+	</if>
+	<if test="introContent != null" >
+	    and introContent =  #{introContent}
+	</if>
+	<if test="uploadnum != null" >
+	    and uploadnum =  #{uploadnum}
+	</if>
+	 <if test="industryid != null and industryid != ''" >
+	    and industryid =  #{industryid}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into st_resume_activities(id,title,homeimg,startdate,enddate,uploadleast,intro,introContent,uploadnum,industryid,signupend,uploadstart,uploadend,downloadstart)
+ values(#{id},#{title},#{homeimg},#{startdate},#{enddate},#{uploadleast},#{intro},#{introContent},#{uploadnum},#{industryid},#{signupend},#{uploadstart},#{uploadend},#{downloadstart})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_resume_activities set title=#{title},homeimg=#{homeimg},startdate=#{startdate},enddate=#{enddate},uploadleast=#{uploadleast},intro=#{intro},introContent=#{introContent},uploadnum=#{uploadnum},industryid=#{industryid} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_resume_activities set 
+	<trim  suffixOverrides="," >
+	<if test="title != null  and title != '' ">
+		title=#{title},
+	</if>
+	<if test="homeimg != null  and homeimg != '' ">
+		homeimg=#{homeimg},
+	</if>
+	<if test="startdate != null  ">
+		startdate=#{startdate},
+	</if>
+	<if test="enddate != null  ">
+		enddate=#{enddate},
+	</if>
+	<if test="uploadleast != null  ">
+		uploadleast=#{uploadleast},
+	</if>
+	<if test="intro != null  and intro != '' ">
+		intro=#{intro},
+	</if>
+	<if test="introContent != null  ">
+		introContent=#{introContent},
+	</if>
+	<if test="uploadnum != null  ">
+		uploadnum=#{uploadnum},
+	</if>
+	<if test="industryid != null  and industryid != '' ">
+		industryid=#{industryid},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_resume_activities where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 活动表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_resume_activities where id = #{id}
+</select>
+
+<!-- 活动表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_resume_activities 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询活动表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_resume_activities 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<!-- 查询活动表列表 -->
+<select id="queryByTime" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_resume_activities 
+	where now()&gt;startdate and now()&lt;enddate
+</select>
+
+  	
+</mapper>   

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.mapper.WeixinPrizerecordMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.weixin.bean.WeixinPrizerecord" >
+	<result column="id" property="id"/>
+	<result column="hdid" property="hdid"/>
+	<result column="mobile" property="mobile"/>
+	<result column="prize" property="prize"/>
+	<result column="addtime" property="addtime"/>
+	<result column="oppid" property="oppid"/>
+	<result column="accountid" property="accountid"/>
+</resultMap>
+       
+<!-- weixin_prizerecord table all fields -->
+<sql id="Base_Column_List" >
+	 id,hdid,mobile,prize,addtime,oppid,accountid
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="hdid != null  " >
+	    and hdid =  #{hdid}
+	</if>
+	 	<if test="mobile != null and mobile != ''" >
+	    and mobile =  #{mobile}
+	</if>
+	 	<if test="prize != null and prize != ''" >
+	    and prize =  #{prize}
+	</if>
+	<if test="addtime != null" >
+	    and addtime =  #{addtime}
+	</if>
+	 	<if test="oppid != null and oppid != ''" >
+	    and oppid =  #{oppid}
+	</if>
+	<if test="accountid != null" >
+	    and accountid =  #{accountid}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into weixin_prizerecord(id,hdid,mobile,prize,addtime,oppid,accountid)
+ values(#{id},#{hdid},#{mobile},#{prize},now(),#{oppid},#{accountid})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update weixin_prizerecord set hdid=#{hdid},mobile=#{mobile},prize=#{prize},addtime=#{addtime},oppid=#{oppid},accountid=#{accountid} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update weixin_prizerecord set 
+	<trim  suffixOverrides="," >
+	<if test="hdid != null  ">
+		hdid=#{hdid},
+	</if>
+	<if test="mobile != null  and mobile != '' ">
+		mobile=#{mobile},
+	</if>
+	<if test="prize != null  and prize != '' ">
+		prize=#{prize},
+	</if>
+	<if test="addtime != null  ">
+		addtime=#{addtime},
+	</if>
+	<if test="oppid != null  and oppid != '' ">
+		oppid=#{oppid},
+	</if>
+	<if test="accountid != null  ">
+		accountid=#{accountid},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from weixin_prizerecord where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 中奖纪录表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_prizerecord where id = #{id}
+</select>
+
+<!-- 中奖纪录表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from weixin_prizerecord 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询中奖纪录表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from weixin_prizerecord 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

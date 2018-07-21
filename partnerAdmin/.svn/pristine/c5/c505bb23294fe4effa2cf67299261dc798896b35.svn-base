@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StResumeTrashMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StResumeTrash" >
+	<result column="id" property="id"/>
+	<result column="fullname" property="fullname"/>
+	<result column="tel" property="tel"/>
+	<result column="sex" property="sex"/>
+	<result column="age" property="age"/>
+	<result column="highestdegree" property="highestdegree"/>
+	<result column="education" property="education"/>
+	<result column="currentlocation" property="currentlocation"/>
+	<result column="email" property="email"/>
+	<result column="worktime" property="worktime"/>
+	<result column="company" property="company"/>
+	<result column="position" property="position"/>
+	<result column="nowmoney" property="nowmoney"/>
+	<result column="keyword" property="keyword"/>
+	<result column="keywordmessage" property="keywordmessage"/>
+	<result column="curindustry" property="curindustry"/>
+	<result column="uploadtime" property="uploadtime"/>
+	<result column="intentionjob" property="intentionjob"/>
+	<result column="isworking" property="isworking"/>
+	<result column="marryed" property="marryed"/>
+	<result column="uploadby" property="uploadby"/>
+	<result column="url" property="url"/>
+	<result column="status" property="status"/>
+</resultMap>
+       
+<!-- st_resume_trash table all fields -->
+<sql id="Base_Column_List" >
+	 id,fullname,tel,sex,age,highestdegree,education,currentlocation,email,worktime,company,position,nowmoney,keyword,keywordmessage,curindustry,uploadtime,intentionjob,isworking,marryed,uploadby,url,status
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="fullname != null and fullname != ''" >
+	    and fullname =  #{fullname}
+	</if>
+	 	<if test="tel != null and tel != ''" >
+	    and tel =  #{tel}
+	</if>
+	<if test="sex != null" >
+	    and sex =  #{sex}
+	</if>
+	<if test="age != null" >
+	    and age =  #{age}
+	</if>
+	 	<if test="highestdegree != null and highestdegree != ''" >
+	    and highestdegree =  #{highestdegree}
+	</if>
+	 	<if test="education != null and education != ''" >
+	    and education =  #{education}
+	</if>
+	 	<if test="currentlocation != null and currentlocation != ''" >
+	    and currentlocation =  #{currentlocation}
+	</if>
+	 	<if test="email != null and email != ''" >
+	    and email =  #{email}
+	</if>
+	 	<if test="worktime != null and worktime != ''" >
+	    and worktime =  #{worktime}
+	</if>
+	 	<if test="company != null and company != ''" >
+	    and company =  #{company}
+	</if>
+	 	<if test="position != null and position != ''" >
+	    and position =  #{position}
+	</if>
+	 	<if test="nowmoney != null and nowmoney != ''" >
+	    and nowmoney =  #{nowmoney}
+	</if>
+	 	<if test="keyword != null and keyword != ''" >
+	    and keyword =  #{keyword}
+	</if>
+	 	<if test="keywordmessage != null and keywordmessage != ''" >
+	    and keywordmessage =  #{keywordmessage}
+	</if>
+	 	<if test="curindustry != null and curindustry != ''" >
+	    and curindustry =  #{curindustry}
+	</if>
+	<if test="uploadtime != null" >
+	    and uploadtime =  #{uploadtime}
+	</if>
+	 	<if test="intentionjob != null and intentionjob != ''" >
+	    and intentionjob =  #{intentionjob}
+	</if>
+	<if test="isworking != null" >
+	    and isworking =  #{isworking}
+	</if>
+	<if test="marryed != null" >
+	    and marryed =  #{marryed}
+	</if>
+	<if test="uploadby != null" >
+	    and uploadby =  #{uploadby}
+	</if>
+	 	<if test="url != null and url != ''" >
+	    and url =  #{url}
+	</if>
+	<if test="status != null" >
+	    and status =  #{status}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into st_resume_trash(id,fullname,tel,sex,age,highestdegree,education,currentlocation,email,worktime,company,position,nowmoney,keyword,keywordmessage,curindustry,uploadtime,intentionjob,isworking,marryed,uploadby,url,status)
+ values(#{id},#{fullname},#{tel},#{sex},#{age},#{highestdegree},#{education},#{currentlocation},#{email},#{worktime},#{company},#{position},#{nowmoney},#{keyword},#{keywordmessage},#{curindustry},#{uploadtime},#{intentionjob},#{isworking},#{marryed},#{uploadby},#{url},#{status})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_resume_trash set fullname=#{fullname},tel=#{tel},sex=#{sex},age=#{age},highestdegree=#{highestdegree},education=#{education},currentlocation=#{currentlocation},email=#{email},worktime=#{worktime},company=#{company},position=#{position},nowmoney=#{nowmoney},keyword=#{keyword},keywordmessage=#{keywordmessage},curindustry=#{curindustry},uploadtime=#{uploadtime},intentionjob=#{intentionjob},isworking=#{isworking},marryed=#{marryed},uploadby=#{uploadby},url=#{url},status=#{status} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_resume_trash set 
+	<trim  suffixOverrides="," >
+	<if test="fullname != null  and fullname != '' ">
+		fullname=#{fullname},
+	</if>
+	<if test="tel != null  and tel != '' ">
+		tel=#{tel},
+	</if>
+	<if test="sex != null  ">
+		sex=#{sex},
+	</if>
+	<if test="age != null  ">
+		age=#{age},
+	</if>
+	<if test="highestdegree != null  and highestdegree != '' ">
+		highestdegree=#{highestdegree},
+	</if>
+	<if test="education != null  and education != '' ">
+		education=#{education},
+	</if>
+	<if test="currentlocation != null  and currentlocation != '' ">
+		currentlocation=#{currentlocation},
+	</if>
+	<if test="email != null  and email != '' ">
+		email=#{email},
+	</if>
+	<if test="worktime != null  and worktime != '' ">
+		worktime=#{worktime},
+	</if>
+	<if test="company != null  and company != '' ">
+		company=#{company},
+	</if>
+	<if test="position != null  and position != '' ">
+		position=#{position},
+	</if>
+	<if test="nowmoney != null  and nowmoney != '' ">
+		nowmoney=#{nowmoney},
+	</if>
+	<if test="keyword != null  and keyword != '' ">
+		keyword=#{keyword},
+	</if>
+	<if test="keywordmessage != null  and keywordmessage != '' ">
+		keywordmessage=#{keywordmessage},
+	</if>
+	<if test="curindustry != null  and curindustry != '' ">
+		curindustry=#{curindustry},
+	</if>
+	<if test="uploadtime != null  ">
+		uploadtime=#{uploadtime},
+	</if>
+	<if test="intentionjob != null  and intentionjob != '' ">
+		intentionjob=#{intentionjob},
+	</if>
+	<if test="isworking != null  ">
+		isworking=#{isworking},
+	</if>
+	<if test="marryed != null  ">
+		marryed=#{marryed},
+	</if>
+	<if test="uploadby != null  ">
+		uploadby=#{uploadby},
+	</if>
+	<if test="url != null  and url != '' ">
+		url=#{url},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_resume_trash where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 商机表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_resume_trash where id = #{id}
+</select>
+
+<!-- 商机表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_resume_trash 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询商机表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_resume_trash 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

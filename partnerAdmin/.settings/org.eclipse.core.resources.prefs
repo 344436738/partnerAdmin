@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//WebRoot/js/commons/base.js=utf-8
+encoding//WebRoot/js/ux/login.js=UTF-8
+encoding//WebRoot/js/ux/sys/sysMenu.js=utf-8
+encoding//WebRoot/js/ux/sys/sysUser.js=utf-8
+encoding//WebRoot/view/main/main.jsp=UTF-8
+encoding//WebRoot/view/stLogin/companyRegister.jsp=UTF-8
+encoding//WebRoot/view/stLogin/head.jsp=UTF-8
+encoding//WebRoot/view/stLogin/login.jsp=UTF-8
+encoding//conf/freemarker.properties=UTF-8
+encoding//conf/redis.properties=UTF-8
+encoding//conf/sysconfig.properties=UTF-8
+encoding//conf/urls.properties=UTF-8
+encoding//src/com/base/test/ftp2.java=UTF-8
+encoding/<project>=UTF-8

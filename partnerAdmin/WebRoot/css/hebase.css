@@ -1,0 +1,65 @@
+@charset "utf-8";
+html,body,img,form,ul,p,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,th,td,input,.mp0{margin:0px;padding:0px;}
+html,body{height:100%;}
+body{font:14px/20px '微软雅黑',Microsoft Yahei; color:#666;width:100%;overflow-x:hidden;}
+ul{list-style: none; zoom:1; overflow: hidden;}
+a{cursor:pointer; text-decoration:none; outline: none; color:#555;}
+input,textarea,select{outline:none}
+a:focus{ outline:none;-moz-outline:none;}
+img{border:0; -ms-interpolation-mode:bicubic;}
+form,input,textarea{font:14px/20px '微软雅黑',Microsoft Yahei; color:#666;}
+input[type=button],input[type=submit],input[type=reset]{cursor:pointer;border:0px;}
+input[type=text],textarea{border:1px solid #dcdad7;}
+textarea{resize:none;}
+.clearfix:after{content:"\200B"; display:block; height:0; clear:both; }
+.clearfix{ *zoom:1; }
+.contain{text-align:left;margin:0px auto;}
+.red{color:#f00;}
+.orangetxt{color:#f90;}
+.greentxt{color:#4dbfe5;}
+.hidden{display: none;}
+.ft12{font-size:12px;}
+.ft16{font-size:16px;}
+.ft18{font-size: 18px;}
+.ft20{font-size: 18px;}
+.ft24{font-size:24px;}
+.ft26{font-size:26px;}
+.ft28{font-size:28px;}
+.ftno{font-weight: normal;}
+.ftbol{font-weight: bold;}
+.dashed-line{border-top:1px dashed #E0E0E0;height:0px;overflow:hidden;}
+.inline_inblo{display:inline-block;}
+.inline_blo{display:block;}
+.pl300{padding-left:300px;}
+.pl15{padding-left:15px;}
+.prl20{padding:0px 20px;}
+.pb30{padding-bottom:30px;}
+.mtb15{margin:15px 0px;}
+.mtb10{margin:10px 0px;}
+.mtb5{margin:5px 0px;}
+.mtb8{margin:8px 0px;}
+.mr15{margin-right:15px;}
+.mr5{margin-right:5px;}
+.h32{height:32px;line-height:32px;}
+.h28{height:28px;line-height:28px;}
+.h20{height:20px;line-height:20px;}
+.txtri{text-align:right;margin-right:5px;}
+.txtcen{text-align:center;}
+.txtlef{text-align:left;}
+.tr{text-align:right;}
+.wd375{width:375px;}
+.wd250{width:250px;}
+.wd170{width:170px;}
+.wd160{width:160px;}
+.wd120{width:120px;}
+.wd60{width:60px;}
+.wd40{width:40px;}
+.chacol{color:#666;}
+.chacol:hover{color:#4dbfe5;}
+.pointer{cursor:pointer;}
+.flole{float:left;}
+.flori{float:right;}
+.orage_bg{background:#fa9800;color:#fff;}
+.green_bg{background:#4dbfe5;color:#fff;}
+.hidden{display:none;}
+.cb{clear:both;}

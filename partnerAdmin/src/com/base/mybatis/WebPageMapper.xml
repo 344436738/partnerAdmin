@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.mapper.WebPageMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.base.bean.WebPage" >
+	<result column="id" property="id"/>
+	<result column="name" property="name"/>
+	<result column="typeid" property="typeid"/>
+	<result column="localPath" property="localPath"/>
+	<result column="title" property="title"/>
+	<result column="keyword" property="keyword"/>
+	<result column="description" property="description"/>
+	<result column="deleted" property="deleted"/>
+	<result column="templateContent" property="templateContent"/>
+	<result column="createTime" property="createTime"/>
+	<result column="createBy" property="createBy"/>
+	<result column="updateTime" property="updateTime"/>
+	<result column="updateBy" property="updateBy"/>
+</resultMap>
+       
+<!-- web_page table all fields -->
+<sql id="Base_Column_List" >
+	 id,name,typeid,localPath,title,keyword,description,deleted,templateContent,createTime,createBy,updateTime,updateBy
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="name != null and name != ''" >
+	     and name like CONCAT('%', #{name}, '%'),
+	</if>
+	 	<if test="typeid != null and typeid != ''" >
+	    and typeid =  #{typeid}
+	</if>
+	 	<if test="localPath != null and localPath != ''" >
+	    and localPath =  #{localPath}
+	</if>
+	 	<if test="title != null and title != ''" >
+	    and title like CONCAT('%', #{title}, '%'),
+	</if>
+	 	<if test="keyword != null and keyword != ''" >
+	     and keyword like CONCAT('%', #{keyword}, '%'),
+	</if>
+	 	<if test="description != null and description != ''" >
+	    and description =  #{description}
+	</if>
+	<if test="deleted != null" >
+	    and deleted =  #{deleted}
+	</if>
+	<if test="templateContent != null and templateContent != ''" >
+	    and templateContent =  #{templateContent}
+	</if>
+	<if test="createTime != null" >
+	    and createTime =  #{createTime}
+	</if>
+	<if test="createBy != null" >
+	    and createBy =  #{createBy}
+	</if>
+	<if test="updateTime != null" >
+	    and updateTime =  #{updateTime}
+	</if>
+	<if test="updateBy != null" >
+	    and updateBy =  #{updateBy}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into web_page(id,name,typeid,localPath,title,keyword,description,deleted,templateContent,createTime,createBy,updateTime,updateBy)
+ values(#{id},#{name},#{typeid},#{localPath},#{title},#{keyword},#{description},#{deleted},#{templateContent},now(),#{createBy},now(),#{updateBy})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update web_page set name=#{name},typeid=#{typeid},localPath=#{localPath},title=#{title},keyword=#{keyword},description=#{description},deleted=#{deleted},templateContent=#{templateContent},createBy=#{createBy},updateTime=now(),updateBy=#{updateBy} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update web_page set 
+	<trim  suffixOverrides="," >
+	<if test="name != null  and name != '' ">
+		 name = #{name},
+	</if>
+	<if test="typeid != null  and typeid != '' ">
+		typeid=#{typeid},
+	</if>
+	<if test="localPath != null  and localPath != '' ">
+		localPath=#{localPath},
+	</if>
+	<if test="title != null  and title != '' ">
+		title = #{title},
+	</if>
+	<if test="keyword != null  and keyword != '' ">
+		keyword = #{keyword},
+	</if>
+	<if test="description != null  and description != '' ">
+		description=#{description},
+	</if>
+	<if test="deleted != null  ">
+		deleted=#{deleted},
+	</if>
+	<if test="templateContent != null and templateContent != ''  ">
+		templateContent=#{templateContent},
+	</if>
+	<if test="createTime != null  ">
+		createTime=#{createTime},
+	</if>
+	<if test="createBy != null  ">
+		createBy=#{createBy},
+	</if>
+	<if test="updateTime != null  ">
+		updateTime=#{updateTime},
+	</if>
+	<if test="updateBy != null  ">
+		updateBy=#{updateBy},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from web_page where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 页面 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from web_page where id = #{id}
+</select>
+
+<!-- 页面 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from web_page 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询页面列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from web_page 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.mapper.WeixinAccountMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.weixin.bean.WeixinAccount" >
+	<result column="id" property="id"/>
+	<result column="accountname" property="accountname"/>
+	<result column="accounttoken" property="accounttoken"/>
+	<result column="accountnumber" property="accountnumber"/>
+	<result column="accounttype" property="accounttype"/>
+	<result column="accountemail" property="accountemail"/>
+	<result column="accountdesc" property="accountdesc"/>
+	<result column="accountaccesstoken" property="accountaccesstoken"/>
+	<result column="accountappid" property="accountappid"/>
+	<result column="accountappsecret" property="accountappsecret"/>
+	<result column="ADDTOEKNTIME" property="ADDTOEKNTIME"/>
+	<result column="USERNAME" property="USERNAME"/>
+	<result column="WEIXIN_ACCOUNTID" property="WEIXIN_ACCOUNTID"/>
+	<result column="userid" property="userid"/>
+</resultMap>
+       
+<!-- weixin_account table all fields -->
+<sql id="Base_Column_List" >
+	 id,accountname,accounttoken,accountnumber,accounttype,accountemail,accountdesc,accountaccesstoken,accountappid,accountappsecret,ADDTOEKNTIME,USERNAME,WEIXIN_ACCOUNTID,userid
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	 	<if test="id != null and id != ''" >
+	    and id =  #{id}
+	</if>
+	 	<if test="accountname != null and accountname != ''" >
+	    and accountname =  #{accountname}
+	</if>
+	 	<if test="accounttoken != null and accounttoken != ''" >
+	    and accounttoken =  #{accounttoken}
+	</if>
+	 	<if test="accountnumber != null and accountnumber != ''" >
+	    and accountnumber =  #{accountnumber}
+	</if>
+	 	<if test="accounttype != null and accounttype != ''" >
+	    and accounttype =  #{accounttype}
+	</if>
+	 	<if test="accountemail != null and accountemail != ''" >
+	    and accountemail =  #{accountemail}
+	</if>
+	 	<if test="accountdesc != null and accountdesc != ''" >
+	    and accountdesc =  #{accountdesc}
+	</if>
+	 	<if test="accountaccesstoken != null and accountaccesstoken != ''" >
+	    and accountaccesstoken =  #{accountaccesstoken}
+	</if>
+	 	<if test="accountappid != null and accountappid != ''" >
+	    and accountappid =  #{accountappid}
+	</if>
+	 	<if test="accountappsecret != null and accountappsecret != ''" >
+	    and accountappsecret =  #{accountappsecret}
+	</if>
+	<if test="ADDTOEKNTIME != null" >
+	    and ADDTOEKNTIME =  #{ADDTOEKNTIME}
+	</if>
+	 	<if test="USERNAME != null and USERNAME != ''" >
+	    and USERNAME =  #{USERNAME}
+	</if>
+	 	<if test="WEIXIN_ACCOUNTID != null and WEIXIN_ACCOUNTID != ''" >
+	    and WEIXIN_ACCOUNTID =  #{WEIXIN_ACCOUNTID}
+	</if>
+	<if test="userid != null" >
+	    and userid =  #{userid}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into weixin_account(id,accountname,accounttoken,accountnumber,accounttype,accountemail,accountdesc,accountaccesstoken,accountappid,accountappsecret,ADDTOEKNTIME,USERNAME,WEIXIN_ACCOUNTID,userid)
+ values(#{id},#{accountname},#{accounttoken},#{accountnumber},#{accounttype},#{accountemail},#{accountdesc},#{accountaccesstoken},#{accountappid},#{accountappsecret},now(),#{USERNAME},#{WEIXIN_ACCOUNTID},#{userid})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update weixin_account set accountname=#{accountname},accounttoken=#{accounttoken},accountnumber=#{accountnumber},accounttype=#{accounttype},accountemail=#{accountemail},accountdesc=#{accountdesc},accountaccesstoken=#{accountaccesstoken},accountappid=#{accountappid},accountappsecret=#{accountappsecret},ADDTOEKNTIME=#{ADDTOEKNTIME},USERNAME=#{USERNAME},WEIXIN_ACCOUNTID=#{WEIXIN_ACCOUNTID},userid=#{userid} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update weixin_account set 
+	<trim  suffixOverrides="," >
+	<if test="accountname != null  and accountname != '' ">
+		accountname=#{accountname},
+	</if>
+	<if test="accounttoken != null  and accounttoken != '' ">
+		accounttoken=#{accounttoken},
+	</if>
+	<if test="accountnumber != null  and accountnumber != '' ">
+		accountnumber=#{accountnumber},
+	</if>
+	<if test="accounttype != null  and accounttype != '' ">
+		accounttype=#{accounttype},
+	</if>
+	<if test="accountemail != null  and accountemail != '' ">
+		accountemail=#{accountemail},
+	</if>
+	<if test="accountdesc != null  and accountdesc != '' ">
+		accountdesc=#{accountdesc},
+	</if>
+	<if test="accountaccesstoken != null  and accountaccesstoken != '' ">
+		accountaccesstoken=#{accountaccesstoken},
+	</if>
+	<if test="accountappid != null  and accountappid != '' ">
+		accountappid=#{accountappid},
+	</if>
+	<if test="accountappsecret != null  and accountappsecret != '' ">
+		accountappsecret=#{accountappsecret},
+	</if>
+	<if test="ADDTOEKNTIME != null  ">
+		ADDTOEKNTIME=#{ADDTOEKNTIME},
+	</if>
+	<if test="USERNAME != null  and USERNAME != '' ">
+		USERNAME=#{USERNAME},
+	</if>
+	<if test="WEIXIN_ACCOUNTID != null  and WEIXIN_ACCOUNTID != '' ">
+		WEIXIN_ACCOUNTID=#{WEIXIN_ACCOUNTID},
+	</if>
+	<if test="userid != null  ">
+		userid=#{userid},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from weixin_account where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 微信公众平台账户 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_account where id = #{id}
+</select>
+
+<!-- 查询 用户账户 -->
+<select id="findByUsername"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_account where USERNAME=#{USERNAME}
+</select>
+<!-- 查询 原始ID -->
+<select id="findUniqueByProperty"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_account where WEIXIN_ACCOUNTID=#{WEIXIN_ACCOUNTID}
+</select>
+<!-- 微信公众平台账户 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from weixin_account 
+	<include refid="Example_Where_Clause"/>
+</select>
+ <!-- 通过userid获取用户信息-->
+<select id="queryByUserid"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from weixin_account where userid = #{userid}
+</select>
+  	
+<!-- 查询微信公众平台账户列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from weixin_account 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

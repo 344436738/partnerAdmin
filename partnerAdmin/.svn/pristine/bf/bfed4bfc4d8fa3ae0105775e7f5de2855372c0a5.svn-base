@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.mapper.SiteNewsMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.base.bean.SiteNews" >
+	<result column="id" property="id"/>
+	<result column="pid" property="pid"/>
+	<result column="title" property="title"/>
+	<result column="summary" property="summary"/>
+	<result column="contentid" property="contentid"/>
+	<result column="pic" property="pic"/>
+	<result column="createTime" property="createTime"/>
+	<result column="createUser" property="createUser"/>
+	<result column="status" property="status"/>
+	<result column="view" property="view"/>
+</resultMap>
+<cache readOnly="true" />      
+<!-- site_news table all fields -->
+<sql id="Base_Column_List" >
+	 id,pid,(select name from site_news_column snc where snc.id=site_news.pid) as newscolumn,title,summary,contentid,pic,createTime,createUser,(select nickName from sys_user su where su.id=createUser) as creatUserName,status,view
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="pid != null" >
+<!--	    and pid =  #{pid}-->
+	   and site_news.pid in (select id from site_news_column snc where (snc.id=#{pid} or snc.pid=#{pid}))
+	</if>
+	 	<if test="title != null and title != ''" >
+	    and title like CONCAT('%', #{title}, '%')
+	</if>
+	 	<if test="summary != null and summary != ''" >
+	    and summary =  #{summary}
+	</if>
+	<if test="contentid != null" >
+	    and contentid =  #{contentid}
+	</if>
+	 	<if test="pic != null and pic != ''" >
+	    and pic =  #{pic}
+	</if>
+	<if test="createTime != null" >
+	    and createTime =  #{createTime}
+	</if>
+	<if test="createUser != null" >
+	    and createUser =  #{createUser}
+	</if>
+	<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<if test="view != null" >
+	    and view =  #{view}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into site_news(id,pid,title,summary,contentid,pic,createTime,createUser,status,view)
+ values(#{id},#{pid},#{title},#{summary},#{contentid},#{pic},now(),#{createUser},#{status},#{view})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update site_news set pid=#{pid},title=#{title},summary=#{summary},contentid=#{contentid},pic=#{pic},createUser=#{createUser},status=#{status},view=#{view} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update site_news set 
+	<trim  suffixOverrides="," >
+	<if test="pid != null  ">
+		pid=#{pid},
+	</if>
+	<if test="title != null  and title != '' ">
+		title=#{title},
+	</if>
+	<if test="summary != null  and summary != '' ">
+		summary=#{summary},
+	</if>
+	<if test="contentid != null  ">
+		contentid=#{contentid},
+	</if>
+	<if test="pic != null  and pic != '' ">
+		pic=#{pic},
+	</if>
+	<if test="createTime != null  ">
+		createTime=#{createTime},
+	</if>
+	<if test="createUser != null  ">
+		createUser=#{createUser},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	<if test="view != null  ">
+		view=#{view},
+	</if>
+	
+	
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from site_news where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 新闻栏目表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from site_news where id = #{id}
+</select>
+
+<!-- 更新访问量-->
+<update id="updateView"  parameterType="Object">
+	update site_news set  view=view+#{view}  where id=#{id}
+	
+</update>
+
+<!-- 新闻栏目表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from site_news 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询新闻栏目表列表 -->
+<select id="queryByList" resultType="com.base.bean.SiteNews"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from site_news
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<!-- 查询新闻栏目访问量 -->
+<select id="queryColunmnPVList" resultType="com.base.bean.SiteNews"  parameterType="Object">
+	select 
+	(select name from site_news_column as snc where snc.id=sn.pid) as columnName,sum(view) as view 
+	from site_news as sn
+	where pid is not null group by pid
+
+</select>
+
+
+<!-- 查询新闻栏目发布量 -->
+<select id="queryColunmnReleaseList" resultType="com.base.bean.SiteNews"  parameterType="Object">
+	select 
+	(select name from site_news_column as snc where snc.id=sn.pid) as columnName,count(id) as releaseCount 
+	from site_news as sn 
+	where pid is not null group by pid
+</select>
+  	
+</mapper>   

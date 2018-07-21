@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StResumeExchangerecordMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StResumeExchangerecord" >
+	<result column="id" property="id"/>
+	<result column="userid" property="userid"/>
+	<result column="exchangescore" property="exchangescore"/>
+	<result column="rmb" property="rmb"/>
+	<result column="currentrule" property="currentrule"/>
+	<result column="exchangetime" property="exchangetime"/>
+	<result column="paystatus" property="paystatus"/>
+	<result column="status" property="status"/>
+	<result column="cardno" property="cardno"/>
+	<result column="recipient" property="recipient"/>
+	<result column="banktype" property="banktype"/>
+	<result column="scorerecordId" property="scorerecordId"/>
+	
+</resultMap>
+       
+<!-- st_resume_exchangerecord table all fields -->
+<sql id="Base_Column_List" >
+	 id,userid,exchangescore,rmb,currentrule,exchangetime,paystatus,status,cardno,recipient,banktype
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="userid != null" >
+	    and userid =  #{userid}
+	</if>
+	<if test="exchangescore != null" >
+	    and exchangescore =  #{exchangescore}
+	</if>
+	<if test="rmb != null" >
+	    and rmb =  #{rmb}
+	</if>
+	 	<if test="currentrule != null and currentrule != ''" >
+	    and currentrule =  #{currentrule}
+	</if>
+	<if test="exchangetime != null" >
+	    and exchangetime =  #{exchangetime}
+	</if>
+	<if test="paystatus != null" >
+	    and paystatus =  #{paystatus}
+	</if>
+	<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	 	<if test="cardno != null and cardno != ''" >
+	    and cardno =  #{cardno}
+	</if>
+	 	<if test="recipient != null and recipient != ''" >
+	    and recipient =  #{recipient}
+	</if>
+	 	<if test="banktype != null and banktype != ''" >
+	    and banktype =  #{banktype}
+	</if>
+	 <if test="scorerecordId != null and scorerecordId != ''" >
+	    and scorerecordId =  #{scorerecordId}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into st_resume_exchangerecord(id,userid,exchangescore,rmb,currentrule,exchangetime,paystatus,status,cardno,recipient,banktype)
+ values(#{id},#{userid},#{exchangescore},#{rmb},#{currentrule},now(),0,#{status},#{cardno},#{recipient},#{banktype})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_resume_exchangerecord set userid=#{userid},exchangescore=#{exchangescore},rmb=#{rmb},currentrule=#{currentrule},exchangetime=#{exchangetime},paystatus=#{paystatus},status=#{status},cardno=#{cardno},recipient=#{recipient},banktype=#{banktype} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_resume_exchangerecord set 
+	<trim  suffixOverrides="," >
+	<if test="userid != null  ">
+		userid=#{userid},
+	</if>
+	<if test="exchangescore != null  ">
+		exchangescore=#{exchangescore},
+	</if>
+	<if test="rmb != null  ">
+		rmb=#{rmb},
+	</if>
+	<if test="currentrule != null  and currentrule != '' ">
+		currentrule=#{currentrule},
+	</if>
+	<if test="exchangetime != null  ">
+		exchangetime=#{exchangetime},
+	</if>
+	<if test="paystatus != null  ">
+		paystatus=#{paystatus},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	<if test="cardno != null  and cardno != '' ">
+		cardno=#{cardno},
+	</if>
+	<if test="recipient != null  and recipient != '' ">
+		recipient=#{recipient},
+	</if>
+	<if test="banktype != null  and banktype != '' ">
+		banktype=#{banktype},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_resume_exchangerecord where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 用户积分兑换申请表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_resume_exchangerecord where id = #{id}
+</select>
+
+<!-- 用户积分兑换申请表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_resume_exchangerecord 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询用户积分兑换申请表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_resume_exchangerecord 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<select id="scoreExchangeList" resultType="com.business.bean.StResumeExchangerecord"  parameterType="Object">
+	select sre.* , swu.nickname, swu.cardno cardno1, swu.recipient recipient1
+	from st_resume_exchangerecord sre,st_web_user swu 
+	where sre.userid=swu.id
+	<if test="paystatus != null" >
+      and paystatus=#{paystatus}
+    </if>
+    <if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+
+<select id="queryByScoreExchangeCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1)
+	from st_resume_exchangerecord sre,st_web_user swu 
+	where sre.userid=swu.id
+	<if test="paystatus != null" >
+      and paystatus=#{paystatus}
+    </if>
+</select>
+
+
+
+
+<select id="queryFrozenScore" resultType="java.lang.Integer"  parameterType="Object">
+	select ifnull(sum(exchangescore),0) as frozenscore from st_resume_exchangerecord where userid=#{userid} and paystatus=0
+</select>
+  	
+  <select id="scoreExchange" resultType="com.business.bean.StResumeExchangerecord"  parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_resume_exchangerecord where scorerecordId = #{scorerecordId}
+</select>	
+  	
+  	
+  <select id="tongJiResumeExchangerecord" resultType="com.business.bean.StResumeExchangerecord"  parameterType="java.lang.String">
+	select exchangescore  
+	 from st_resume_exchangerecord where ${value}
+</select>	
+  	
+  	
+  	
+</mapper>   

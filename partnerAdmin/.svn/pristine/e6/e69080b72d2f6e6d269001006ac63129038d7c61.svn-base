@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StOpportunitiesRecommendMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StOpportunitiesRecommend" >
+	<result column="id" property="id"/>
+	<result column="oppid" property="oppid"/>
+	<result column="userid" property="userid"/>
+	<result column="recommendtime" property="recommendtime"/>
+	<result column="checkstatus" property="checkstatus"/>
+	<result column="paystatus" property="paystatus"/>
+	<result column="gradeid" property="gradeid"/>
+	<result column="paynum" property="paynum"/>
+	<result column="personevaluate" property="personevaluate"/>
+	<result column="companyevaluate" property="companyevaluate"/>
+	<result column="oppname" property="oppname"/>
+
+</resultMap>
+       
+<!-- st_opportunities_recommend table all fields -->
+<sql id="Base_Column_List" >
+	 id,oppid,userid,recommendtime,checkstatus,paystatus,gradeid,paynum,personevaluate,companyevaluate,oppname
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="oppid != null" >
+	    and oppid =  #{oppid}
+	</if>
+	<if test="userid != null" >
+	    and userid =  #{userid}
+	</if>
+	<if test="recommendtime != null" >
+	    and recommendtime =  #{recommendtime}
+	</if>
+	<if test="checkstatus != null" >
+	    and checkstatus =  #{checkstatus}
+	</if>
+	<if test="paystatus != null" >
+	    and paystatus =  #{paystatus}
+	</if>
+	 	<if test="gradeid != null and gradeid != ''" >
+	    and gradeid =  #{gradeid}
+	</if>
+	 	<if test="paynum != null and paynum != ''" >
+	    and paynum =  #{paynum}
+	</if>
+	<if test="personevaluate != null" >
+	    and personevaluate =  #{personevaluate}
+	</if>
+	<if test="companyevaluate != null" >
+	    and companyevaluate =  #{companyevaluate}
+	</if>
+	<if test="oppname != null and oppname != ''" >
+		and oppname =　#{oppname}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  <!-- 
+  insert into st_opportunities_recommend(id,oppid,userid,recommendtime,checkstatus,paystatus,gradeid,paynum,personevaluate,companyevaluate,oppname)
+  values(#{id},#{oppid},#{userid},now(),1,0,#{gradeid},#{paynum},#{personevaluate},#{companyevaluate},#{oppname})
+  
+  insert into st_opportunities_recommend(id,oppid,userid,recommendtime,checkstatus,paystatus,gradeid,paynum,personevaluate,companyevaluate,oppname)
+  select #{id},#{oppid},#{userid},now(),1,0,sodc.levelname,sodo.cashback,0,0,null
+  from st_opportunities_dictionary_oppgrade sodo ,
+  st_opportunities_dictionary_scale sodc 
+  where sodo.scaleid=sodc.id 
+  and sodo.userid=#{userid} and sodc.id=#{customercompsizeid} -->
+  insert into st_opportunities_recommend(id,oppid,userid,recommendtime,checkstatus,paystatus,gradeid,paynum,personevaluate,companyevaluate,oppname)
+  values(#{id},#{oppid},#{userid},now(),1,0,#{customercompsizeid},#{paynum},0,0,#{oppname})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_opportunities_recommend set oppid=#{oppid},userid=#{userid},recommendtime=#{recommendtime},checkstatus=#{checkstatus},paystatus=#{paystatus}
+  ,gradeid=#{gradeid},paynum=#{paynum},personevaluate=#{personevaluate},companyevaluate=#{companyevaluate},oppname=#{oppname} 
+  where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_opportunities_recommend set 
+	<trim  suffixOverrides="," >
+	<if test="oppid != null  ">
+		oppid=#{oppid},
+	</if>
+	<if test="userid != null  ">
+		userid=#{userid},
+	</if>
+	<if test="recommendtime != null  ">
+		recommendtime=#{recommendtime},
+	</if>
+	<if test="checkstatus != null  ">
+		checkstatus=#{checkstatus},
+	</if>
+	<if test="paystatus != null  ">
+		paystatus=#{paystatus},
+	</if>
+	<if test="gradeid != null  and gradeid != '' ">
+		gradeid=#{gradeid},
+	</if>
+	<if test="paynum != null  and paynum != '' ">
+		paynum=#{paynum},
+	</if>
+	<if test="personevaluate != null  ">
+		personevaluate=#{personevaluate},
+	</if>
+	<if test="companyevaluate != null  ">
+		companyevaluate=#{companyevaluate},
+	</if>
+	<if test="oppname != null and oppname !=''">
+		oppname=#{oppname},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_opportunities_recommend where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 商机推荐表 -->
+<select id="queryById"  resultType="com.business.bean.StOpportunitiesRecommend" parameterType="Object">
+	SELECT
+	so.customercompname,
+	so.customercompsize,
+	so.customername,
+	so.customerposition,
+	so.customertel,
+	so.customeremail,
+	so.customercity,
+	so.requirementstype,
+	so.requirementsdescribe,
+	so.recommendfile,
+
+	swu.nickname,
+	swu.recipient,
+	swu.phone
+
+FROM
+	st_opportunities_recommend sor,
+	st_opportunities so,
+	st_web_user swu
+WHERE
+	sor.id=#{id}
+AND so.id = sor.oppid
+AND swu.id = so.issuserid
+</select>
+
+<!-- 商机推荐表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_opportunities_recommend 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询商机推荐表列表 -->
+<select id="queryByList" resultType="com.business.bean.StOpportunitiesRecommend"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_opportunities_recommend 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<select id="queryOpptunitiesDetail" resultType="com.business.bean.StOpportunitiesRecommend"  parameterType="Object">
+	
+	select sor.id,so.customercompname,so.customername,so.customertel,so.requirementstype,so.requirementsdescribe,
+	sor.userid,sor.checkstatus,sor.paystatus,sor.personevaluate
+	from st_opportunities so ,st_opportunities_recommend sor 
+	where sor.oppid=so.id 
+	and so.issuserid=#{issuserid}
+	<if test="checkstatus != null" >
+	    and sor.checkstatus =  #{checkstatus}
+	</if>
+	<if test="paystatus != null" >
+	    and sor.paystatus=#{paystatus}
+	</if>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+<select id="oppSum" resultType="map"  parameterType="Object">
+	select sum(1) as oppsum,
+	sum(checkstatus=3) as oppchecknopasssum,
+	sum(checkstatus=1) as oppcheckingsum,
+	sum(checkstatus=2) as oppcheckpasssum 
+	from st_opportunities_recommend 
+    group by userid having userid=#{userid}
+
+</select>
+  	
+<!-- 商机中心（商机确认）的信息列表 -->
+<select id="queryConfirmInformation" resultType="com.business.bean.StOpportunitiesRecommend" parameterType="Object">
+	SELECT
+	sor.id,
+	so.customercompname,
+	so.customername,
+	so.customerposition,
+	so.customertel,
+	so.requirementstype,
+	so.requirementsdescribe,
+	so.issuserid,
+	swu.nickname,
+	swu.phone,
+	sor.checkstatus,
+	sor.companyevaluate,
+	sor.recommendtime
+FROM
+	st_opportunities_recommend sor,
+	st_opportunities so,
+	st_web_user swu
+WHERE
+	sor.userid = #{userid}
+AND so.id = sor.oppid
+AND swu.id = so.issuserid
+<if test="checkstatus != null  ">
+		and checkstatus=#{checkstatus}
+	</if>
+</select>
+
+
+
+<!-- 确认商机信息 -->
+<select id="queryInfoById" resultType="com.business.bean.StOpportunitiesRecommend" parameterType="Object">
+
+SELECT sor.id,sor.gradeid,sor.checkstatus,
+(select sods.compsize FROM st_opportunities_dictionary_scale sods WHERE sods.id=sor.gradeid) AS compsize,
+(select sods.levelname FROM st_opportunities_dictionary_scale sods WHERE sods.id=sor.gradeid) AS levelname,
+(select sodo.cashback FROM st_opportunities_dictionary_oppgrade sodo WHERE sodo.userid=sor.userid AND sodo.scaleid=sor.gradeid) AS cashback
+
+FROM st_opportunities_recommend sor
+
+WHERE sor.id= #{id}
+
+</select>
+
+<!-- 统计个人用户推荐的商机 -->
+<select id="oppCount" resultType="map"  parameterType="Object">
+	SELECT
+	SUM(1) AS oppsum,
+	SUM(sor.checkstatus = 1) AS oppcheckingsum,
+	SUM(sor.checkstatus = 2) AS oppcheckpassum,
+	SUM(sor.checkstatus = 3) AS oppchecknopassum
+FROM
+	st_opportunities_recommend sor
+GROUP BY
+	issuserid
+HAVING
+	issuserid = #{issuserid}
+
+</select>
+
+
+</mapper>   

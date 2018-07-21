@@ -1,0 +1,937 @@
+/*预定义颜色*/
+/*预定义颜色*/
+.green {
+  color: #00aa00;
+}
+/*预定义CSS*/
+.noWrap {
+  word-break: keep-all;
+  /* 不换行 **/
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+/*预定义CSS*/
+/*修改左侧样式*/
+.mainLeft .leftList {
+  background: #fafafa;
+}
+.mainLeft .leftList a {
+  background-image: url(../images/leftIconP.png);
+  background-repeat: no-repeat;
+}
+.mainLeft .leftList a.income {
+  background-position: 35px 16px;
+}
+.mainLeft .leftList a.income.active,
+.mainLeft .leftList a.income:hover {
+  background-position: 35px -34px;
+}
+.mainLeft .leftList a.opportunities {
+  background-position: 35px -84px;
+}
+.mainLeft .leftList a.opportunities.active,
+.mainLeft .leftList a.opportunities:hover {
+  background-position: 35px -134px;
+}
+.mainLeft .leftList a.vitae {
+  background-position: 35px -184px;
+}
+.mainLeft .leftList a.vitae.active,
+.mainLeft .leftList a.vitae:hover {
+  background-position: 35px -234px;
+}
+.mainLeft .leftList a.golds {
+  background-position: 35px -284px;
+}
+.mainLeft .leftList a.golds.active,
+.mainLeft .leftList a.golds:hover {
+  background-position: 35px -334px;
+}
+.mainLeft .leftList a.myRecommend {
+  background-position: 35px -384px;
+}
+.mainLeft .leftList a.myRecommend.active,
+.mainLeft .leftList a.myRecommend:hover {
+  background-position: 35px -434px;
+}
+.mainLeft .leftList a.active,
+.mainLeft .leftList a:hover,
+.mainLeft .leftList a.active:hover {
+  background-color: #fff;
+  color: #269edb;
+}
+/*修改左侧样式*/
+/****个人首页开始****/
+.indexPage {
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+  background: url(../images/indexBgP.png) no-repeat center center;
+  background-size: 100% 100%;
+}
+.indexPage .blackBg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+.indexPage .header {
+  height: 90px;
+}
+.indexPage .header .logo {
+  cursor: default;
+  padding: 0 20px;
+  font-size: 24px;
+  line-height: 90px;
+  font-weight: bold;
+  color: #fff;
+}
+.indexPage .header .menuList li {
+  float: left;
+  margin-left: 20px;
+}
+.indexPage .header .menuList a {
+  color: #fff;
+  display: block;
+  padding: 0 20px;
+  margin: 0 40px;
+  line-height: 90px;
+  font-size: 20px;
+}
+.indexPage .header .menuList a:hover {
+  color: #269edb;
+}
+.indexPage .header .menuList .logins {
+  color: #fff;
+}
+.indexPage .header .menuList .logins a {
+  margin: 0;
+  line-height: 82px;
+  height: 88px;
+  padding: 0;
+  font-size: 14px;
+  display: inline-block;
+}
+.indexPage .header .menuList .logins a:hover {
+  color: #269edb;
+}
+.indexPage .content {
+  width: 100%;
+}
+.indexPage .content .main {
+  padding: 100px;
+  padding-left: 130px;
+}
+.indexPage .content .main .titleImg {
+  width: 492px;
+  height: 168px;
+  margin-bottom: 50px;
+  background: url(../images/indexTxt2.png) no-repeat left center;
+}
+.indexPage .content .main a {
+  display: block;
+  height: 35px;
+  padding-left: 40px;
+  line-height: 30px;
+  color: #fff;
+  font-size: 24px;
+  background: url(../images/right.png) no-repeat left 1px;
+}
+.indexPage .footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(211, 217, 237, 0.6);
+  padding: 30px;
+}
+.indexPage .footer .media .circleBox {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-left: 30px;
+  margin-right: 10px;
+  background-color: #269edb;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+.indexPage .footer .media .shangji {
+  background-image: url(../images/shangjiIcon.png);
+}
+.indexPage .footer .media .jianli {
+  background-image: url(../images/jianliIcon.png);
+}
+.indexPage .footer .media .media-body {
+  line-height: 75px;
+  font-size: 22px;
+}
+.indexPage .footer .media .media-body span {
+  font-size: 28px;
+}
+/****个人首页结束****/
+/*****收益情况*****/
+.incomeSituationPage .mainPanel {
+  margin: 20px 0;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 4px;
+}
+.incomeSituationPage h2.mainTotal {
+  font-size: 30px;
+}
+.incomeSituationPage .tabTitle {
+  margin: 30px 0;
+}
+.incomeSituationPage .tabTitle li {
+  float: left;
+  width: 120px;
+  height: 46px;
+  line-height: 45px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #e0e0e0;
+  text-align: center;
+  color: #636363;
+  cursor: pointer;
+  border-top: 1px solid transparent;
+}
+.incomeSituationPage .tabTitle li.active {
+  color: #333333;
+  background: transparent;
+  border-color: #f99543;
+  cursor: default;
+}
+.incomeSituationPage .wd740 {
+  width: 740px;
+  margin: 0 auto;
+}
+.incomeSituationPage .wd300 {
+  width: 300px;
+  margin: 0 auto;
+}
+.incomeSituationPage .imgBox {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.incomeSituationPage .imgBox .blueBox {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 20px auto;
+  border-radius: 50%;
+  background: #269edb;
+  padding: 10px;
+  color: #fff;
+}
+.incomeSituationPage .imgBox .blueBox > div {
+  height: 50px;
+  line-height: 49px;
+  overflow: hidden;
+  font-size: 18px;
+}
+.incomeSituationPage .imgBox .blueBox .topTxt {
+  border-bottom: 1px solid #93cfed;
+  font-size: 16px;
+}
+.incomeSituationPage .imgBox .nextIcon {
+  width: 40px;
+  height: 60px;
+  margin: 0 auto;
+  background: url(../images/nextIcon.png) no-repeat center center;
+}
+.incomeSituationPage .imgBox .progressBox {
+  position: relative;
+  margin: 20px 0;
+  height: 150px;
+  background: url(../images/tuoyuan.png) no-repeat center 20px;
+}
+.incomeSituationPage .imgBox .progressBox .orangeBox {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 50px;
+  border-radius: 50%;
+  background-color: #f99543;
+  background-image: url(../images/orangeIcons.png);
+  background-repeat: no-repeat;
+}
+.incomeSituationPage .imgBox .progressBox .orangeBox.center {
+  position: relative;
+  top: 30px;
+}
+.incomeSituationPage .imgBox .progressBox .orangeBox.icon1 {
+  background-position: 16px  16px;
+}
+.incomeSituationPage .imgBox .progressBox .orangeBox.icon2 {
+  background-position: 16px -83px;
+}
+.incomeSituationPage .imgBox .progressBox .orangeBox.icon3 {
+  background-position: 16px -183px;
+}
+.incomeSituationPage .imgBox .progressBox .orangeBox.icon4 {
+  background-position: 16px -283px;
+}
+.incomeSituationPage .imgBox .progressBox .orangeBox.icon5 {
+  background-position: 16px -383px;
+}
+.incomeSituationPage .imgBox .progressBox .orangeBox.icon6 {
+  background-position: 16px -483px;
+}
+.incomeSituationPage .imgBox .progressBox .orangeBox.icon7 {
+  background-position: 16px -583px;
+}
+.incomeSituationPage .imgBox .progressBox > .fl {
+  width: 33.33%;
+}
+.incomeSituationPage .imgBox .progressBox > .fl a {
+  display: block;
+}
+.incomeSituationPage .imgBox .progressBox .total {
+  font-size: 16px;
+}
+.incomeSituationPage .imgBox .progressBox .total span {
+  font-size: 12px;
+}
+.incomeSituationPage .imgBox .equalIcon {
+  width: 10px;
+  text-align: center;
+  line-height: 120px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 20px;
+}
+.incomeSituationPage .imgBox .tipTxt {
+  margin: 20px 0;
+  padding: 20px 0;
+  border-top: 1px dashed #ccc;
+}
+.incomeSituationPage .imgBox .btnGroup {
+  margin: 20px 0;
+}
+.incomeSituationPage .imgBox .btnGroup .button {
+  text-align: center;
+  min-width: 100px;
+}
+.incomeSituationPage .listBox {
+  background: #fff;
+  padding: 20px;
+}
+.incomeSituationPage .listBox .button {
+  min-width: 160px;
+}
+.incomeSituationPage .listBox h5.fl {
+  line-height: 34px;
+  font-weight: bold;
+}
+.incomeSituationPage .listBox .tableBox {
+  margin: 0 3px 0 2px;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+}
+.incomeSituationPage .listBox .tableBox.table6 li > div {
+  width: 147px;
+}
+.incomeSituationPage .listBox .tableBox.table7 li > div {
+  width: 126px;
+}
+.incomeSituationPage .listBox .tableBox.table10 {
+  margin: 0 3px 0 4px;
+}
+.incomeSituationPage .listBox .tableBox.table10 li > div {
+  width: 88px;
+}
+.incomeSituationPage .listBox .tableBox li:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.incomeSituationPage .listBox .tableBox li > div {
+  float: left;
+  height: 40px;
+  line-height: 39px;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+  text-align: center;
+  word-break: keep-all;
+  /* 不换行 **/
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.incomeSituationPage .listBox .tableBox li.title > div {
+  font-weight: bold;
+  background: #ebebeb;
+}
+.incomeSituationPage .listBox .pagination {
+  margin: 20px 0 0;
+}
+/*****收益情况*****/
+/******收益详情*****/
+.incomeDetailsPage .panelOrange {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #f99543;
+}
+.incomeDetailsPage .panelOrange .progressBox {
+  width: 570px;
+  margin: 10px auto 20px;
+}
+.incomeDetailsPage .panelOrange .progressBox .media {
+  width: 100px;
+  margin: 0;
+}
+.incomeDetailsPage .panelOrange .progressBox .media.active .circleBox {
+  background-color: #f99543;
+}
+.incomeDetailsPage .panelOrange .progressBox .circleBox {
+  width: 47px;
+  height: 47px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background-image: url(../images/progressIcons.png);
+  background-repeat: no-repeat;
+}
+.incomeDetailsPage .panelOrange .progressBox .circleBox.sureIcon {
+  background-position: 11px 13px;
+}
+.incomeDetailsPage .panelOrange .progressBox .circleBox.payIcon {
+  background-position: 11px -140px;
+}
+.incomeDetailsPage .panelOrange .progressBox .circleBox.statusIcon {
+  background-position: 11px -187px;
+}
+.incomeDetailsPage .panelOrange .progressBox .progressBar {
+  width: 135px;
+  height: 12px;
+  margin-top: 20px;
+  background: url('../images/progressBar.png') no-repeat center center;
+}
+.incomeDetailsPage .panel {
+  margin: 20px 0;
+  box-shadow: 0 0 1px 2px #f5f5f5;
+  padding: 30px 20px;
+}
+.incomeDetailsPage .panel .x12 {
+  margin-bottom: 15px;
+}
+.incomeDetailsPage .panel .x12 .total {
+  color: #333;
+  font-weight: bold;
+}
+.incomeDetailsPage .panel .companyDetails {
+  border-right: 1px solid #e8e8e8;
+  color: #636363;
+}
+.incomeDetailsPage .panel .presonalDetails {
+  color: #636363;
+  padding-left: 20px;
+}
+/******收益详情*****/
+/*****商机推荐******/
+.businessRecommendPage .firstPage .wd720 {
+  width: 720px;
+  margin: 20px 0 40px;
+}
+.businessRecommendPage .firstPage .wd720 .line {
+  margin-bottom: 20px;
+}
+.businessRecommendPage .firstPage .wd720 .x2 {
+  line-height: 34px;
+  text-align: right;
+}
+.businessRecommendPage .firstPage .wd720 .x10 {
+  padding-left: 6px;
+  line-height: 34px;
+}
+.businessRecommendPage .firstPage .wd720 .x10 label {
+  margin-right: 10px;
+}
+.businessRecommendPage .firstPage .wd720 .x10 select {
+  font-size: 14px;
+  padding: 6px;
+  border: solid 1px #ddd;
+  width: 100%;
+  height: 34px;
+  line-height: 20px;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;
+}
+.businessRecommendPage .firstPage .wd720 .x10 .blue {
+  color: #269edb;
+  font-size: 12px;
+}
+.businessRecommendPage .firstPage .btnGroup {
+  border-top: 1px dashed #ccc;
+  padding: 20px;
+}
+.businessRecommendPage .firstPage .btnGroup .button {
+  text-align: center;
+  min-width: 100px;
+}
+.businessRecommendPage .secondPage {
+  display: none;
+}
+.businessRecommendPage .secondPage .searchBox {
+  margin: 20px 0;
+  position: relative;
+}
+.businessRecommendPage .secondPage .searchBox .input {
+  background: #fffaee;
+  border-color: #f99543;
+}
+.businessRecommendPage .secondPage .searchBox .button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #fffaee;
+  border-color: #f99543;
+}
+.businessRecommendPage .secondPage .total {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+.businessRecommendPage .secondPage .total .fl {
+  font-weight: bold;
+}
+.businessRecommendPage .secondPage .companyList li {
+  padding: 20px 0;
+  border-bottom: 1px dashed #ccc;
+}
+.businessRecommendPage .secondPage .companyList li.last {
+  border: 0;
+}
+.businessRecommendPage .secondPage .companyList .media {
+  position: relative;
+  font-size: 12px;
+}
+.businessRecommendPage .secondPage .companyList .media .float-left img {
+  width: 160px;
+  height: 100px;
+}
+.businessRecommendPage .secondPage .companyList .media .media-body {
+  padding: 10px 0;
+}
+.businessRecommendPage .secondPage .companyList .media .media-body .title {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.businessRecommendPage .secondPage .companyList .media .media-body .txts {
+  color: #636363;
+  margin-bottom: 10px;
+}
+.businessRecommendPage .secondPage .companyList .media .media-body .starBox {
+  color: #969696;
+}
+.businessRecommendPage .secondPage .companyList .media .media-body .starBox .starBg {
+  cursor: pointer;
+  width: 80px;
+  height: 14px;
+  background: url(../images/starBottom.png) no-repeat left center;
+}
+.businessRecommendPage .secondPage .companyList .media .media-body .starBox .star {
+  width: 50%;
+  height: 14px;
+  background: url(../images/starTop.png) no-repeat left center;
+}
+.businessRecommendPage .secondPage .companyList .media .media-body .button {
+  position: absolute;
+  top: 23px;
+  right: 0;
+}
+.businessRecommendPage .secondPage .pageBottom {
+  width: 410px;
+  margin: 0 auto;
+  padding: 20px 0;
+  border-top: 1px dashed #ccc;
+}
+.businessRecommendPage .secondPage .pageBottom .fl {
+  display: inline-block;
+  margin-right: 5px;
+}
+.businessRecommendPage .secondPage .pageBottom .fl input {
+  width: 80px;
+}
+.businessRecommendPage .secondPage .btnGroup {
+  margin-bottom: 20px;
+}
+.businessRecommendPage .secondPage .btnGroup .button {
+  min-width: 100px;
+  text-align: center;
+  margin: 0 5px;
+}
+.businessRecommendPage .tipPage {
+  display: none;
+}
+.businessRecommendPage .tipPage .success {
+  width: 320px;
+  margin: 80px auto 20px;
+  height: 126px;
+  padding-left: 125px;
+  line-height: 126px;
+  background: url(../images/success.png) no-repeat left center;
+}
+.businessRecommendPage .tipPage .blue {
+  color: #269edb;
+}
+.businessRecommendPage .tipPage .btnGroup {
+  margin: 100px 0;
+}
+.businessRecommendPage .tipPage .btnGroup .button {
+  min-width: 100px;
+  text-align: center;
+}
+.starsPop .content {
+  padding: 20px;
+}
+.starsPop .panelOrange {
+  height: 50px;
+  border: 1px solid #f99543;
+  border-radius: 4px;
+  padding: 0 20px;
+}
+.starsPop .panelOrange > .fl {
+  width: 33.33%;
+  line-height: 48px;
+}
+.starsPop .panelOrange .num {
+  font-size: 36px;
+  font-weight: bold;
+  color: #269edb;
+}
+.starsPop .panelOrange .starBg {
+  margin-top: 17px;
+  width: 80px;
+  height: 14px;
+  background: url(../images/starBottom.png) no-repeat left center;
+}
+.starsPop .panelOrange .starBg .star {
+  width: 50%;
+  height: 14px;
+  background: url(../images/starTop.png) no-repeat left center;
+}
+.starsPop .media {
+  padding: 20px 0;
+  border-bottom: 1px dashed #e8e8e8;
+}
+.starsPop .media .times {
+  font-size: 12px;
+  color: #969696;
+}
+.starsPop .media .txts {
+  height: 46px;
+  overflow: hidden;
+  margin-top: 12px;
+  line-height: 24px;
+}
+.starsPop .pagers {
+  margin-top: 10px;
+}
+.starsPop .pagers a {
+  color: #969696;
+  margin-right: 5px;
+}
+.starsPop .pagers a.active {
+  color: #f99543;
+}
+.chooseBodyPop .content {
+  padding: 20px;
+}
+.chooseBodyPop .content .radioBox {
+  width: 500px;
+  margin: 20px auto;
+}
+.chooseBodyPop .content .radioBox input {
+  display: none;
+}
+.chooseBodyPop .content .radioBox label {
+  display: block;
+}
+.chooseBodyPop .content .radioBox label i {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.chooseBodyPop .content .radioBox label.active i {
+  background-color: orange;
+  background-image: url(../images/ratio.png);
+}
+.chooseBodyPop .content .x12 {
+  margin: 20px 0;
+}
+/*******商机推荐******/
+/******企业评价******/
+.enterpriseEvaluationPage .mainEvaluation {
+  padding: 20px;
+}
+.enterpriseEvaluationPage .mainEvaluation .starLine {
+  width: 240px;
+  margin: 0 auto 20px;
+  font-size: 18px;
+}
+.enterpriseEvaluationPage .mainEvaluation .starBox {
+  margin-top: 3px;
+  margin-left: 20px;
+}
+.enterpriseEvaluationPage .mainEvaluation .starBox li {
+  cursor: pointer;
+  margin-left: 8px;
+  float: left;
+  width: 18px;
+  height: 18px;
+  background: url(../images/star.png) no-repeat center center;
+}
+.enterpriseEvaluationPage .mainEvaluation .starBox li.active {
+  background: url(../images/starA.png) no-repeat center center;
+}
+.enterpriseEvaluationPage .mainEvaluation .textareaBox {
+  width: 800px;
+  margin: 20px auto;
+}
+.enterpriseEvaluationPage .mainEvaluation .textareaBox .input {
+  border: 1px solid #f99543;
+}
+.enterpriseEvaluationPage .mainEvaluation .btnGroup {
+  margin: 80px 0;
+}
+.enterpriseEvaluationPage .mainEvaluation .btnGroup .button {
+  min-width: 100px;
+  text-align: center;
+}
+/******企业评价******/
+/*****我的推荐*****/
+.myRecommendationPage .mainPanel {
+  margin: 20px 0;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 4px;
+}
+.myRecommendationPage h2.mainTotal {
+  font-size: 30px;
+}
+.myRecommendationPage .tabTitle {
+  margin: 20px 0;
+}
+.myRecommendationPage .tabTitle li {
+  float: left;
+  width: 120px;
+  height: 46px;
+  line-height: 45px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #e0e0e0;
+  text-align: center;
+  color: #636363;
+  cursor: pointer;
+  border-top: 1px solid transparent;
+}
+.myRecommendationPage .tabTitle li.active {
+  color: #333333;
+  background: transparent;
+  border-color: #f99543;
+  cursor: default;
+}
+.myRecommendationPage .wd740 {
+  width: 740px;
+  margin: 0 auto;
+}
+.myRecommendationPage .wd300 {
+  width: 300px;
+  margin: 0 auto;
+}
+.myRecommendationPage .listBox {
+  background: #fff;
+  padding: 20px;
+}
+.myRecommendationPage .listBox .button {
+  min-width: 160px;
+}
+.myRecommendationPage .listBox h5.fl {
+  line-height: 34px;
+  font-weight: bold;
+}
+.myRecommendationPage .listBox .tableBox {
+  margin: 0 3px 0 2px;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+}
+.myRecommendationPage .listBox .tableBox.table6 li > div {
+  width: 147px;
+}
+.myRecommendationPage .listBox .tableBox.table6 li:nth-child(2n) > div {
+  background: #fafafa;
+}
+.myRecommendationPage .listBox .tableBox.table7 li > div {
+  width: 126px;
+}
+.myRecommendationPage .listBox .tableBox.table10 {
+  margin: 0 3px 0 4px;
+}
+.myRecommendationPage .listBox .tableBox.table10 li > div {
+  width: 88px;
+}
+.myRecommendationPage .listBox .tableBox li:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.myRecommendationPage .listBox .tableBox li > div {
+  float: left;
+  height: 40px;
+  line-height: 39px;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+  text-align: center;
+  word-break: keep-all;
+  /* 不换行 **/
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.myRecommendationPage .listBox .tableBox li.title > div {
+  font-weight: bold;
+  background: #ebebeb;
+}
+.myRecommendationPage .listBox .pagination {
+  margin: 20px 0 0;
+}
+/*****我的推荐*****/
+/******简历上传*****/
+.resumeUploadPage .uploadFile {
+  margin: 20px 0;
+  line-height: 34px;
+}
+.resumeUploadPage .uploadFile .fl {
+  min-width: 60px;
+  margin-right: 6px;
+}
+.resumeUploadPage .uploadFile select {
+  font-size: 14px;
+  padding: 6px;
+  border: solid 1px #ddd;
+  width: 100%;
+  height: 34px;
+  line-height: 20px;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;
+}
+.resumeUploadPage .uploadFile .tips {
+  color: #969696;
+  font-size: 12px;
+}
+.resumeUploadPage .btnGroup {
+  margin: 80px;
+}
+.resumeUploadPage .btnGroup .button {
+  margin: 0 8px;
+  min-width: 100px;
+  text-align: center;
+}
+.resumeUploadPage .btnGroup .bg-red {
+  background: #f99543;
+  border-color: #f99543;
+}
+.resumeUploadPage .tipBox {
+  padding: 20px;
+}
+.resumeUploadPage .tipBox .line {
+  margin-bottom: 30px;
+}
+.resumeUploadPage .tipBox .x10 {
+  padding: 0;
+  color: #636363;
+}
+.resumeUploadPage .tipBox .x10 li {
+  margin-bottom: 10px;
+}
+.resumeUploadPage .tipBox .blue {
+  color: #269edb;
+}
+/******简历上传*****/
+/*****金币兑换********/
+.goldQueryPage .mainPanel {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  border-radius: 4px;
+  box-shadow: 0 0 1px 1px #e8e8e8;
+}
+.goldQueryPage .mainPanel h2.title {
+  font-size: 30px;
+  margin-right: 50px;
+}
+.goldQueryPage .mainPanel .panelWhite {
+  margin: 20px 0 20px;
+  padding: 20px;
+  background: #fff;
+}
+.goldQueryPage .mainPanel .panelWhite h5 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.goldQueryPage .mainPanel .panelWhite .tableBox {
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  margin-bottom: 20px;
+}
+.goldQueryPage .mainPanel .panelWhite .tableBox .line {
+  border-bottom: 1px solid #ccc;
+}
+.goldQueryPage .mainPanel .panelWhite .tableBox .title {
+  background: #ebebeb;
+}
+.goldQueryPage .mainPanel .panelWhite .tableBox .x4 {
+  text-align: center;
+  height: 40px;
+  line-height: 39px;
+}
+.goldQueryPage .mainPanel .panelWhite .tableBox .x4 .green,
+.goldQueryPage .mainPanel .panelWhite .tableBox .x4 .red {
+  margin-left: 5px;
+}
+.redeemPop .container-layout {
+  padding: 20px 0 0;
+}
+.redeemPop .container-layout .line {
+  margin-bottom: 20px;
+  line-height: 34px;
+}
+.redeemPop .container-layout .x5 {
+  padding: 0 5px;
+}
+.redeemPop .container-layout .txts {
+  line-height: 24px;
+  color: #969696;
+}
+/*****金币兑换********/

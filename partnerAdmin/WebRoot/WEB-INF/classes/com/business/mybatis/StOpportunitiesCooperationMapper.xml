@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.StOpportunitiesCooperationMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.business.bean.StOpportunitiesCooperation" >
+	<result column="id" property="id"/>
+	<result column="opprecommendid" property="opprecommendid"/>
+	<result column="userid" property="userid"/>
+	<result column="title" property="title"/>
+	<result column="contractamount" property="contractamount"/>
+	<result column="rewardrule" property="rewardrule"/>
+	<result column="bonuses" property="bonuses"/>
+	<result column="remark" property="remark"/>
+	<result column="regtime" property="regtime"/>
+	<result column="status" property="status"/>
+	<result column="oppname" property="oppname"/>
+	
+</resultMap>
+       
+<!-- st_opportunities_cooperation table all fields -->
+<sql id="Base_Column_List" >
+	 id,opprecommendid,userid,title,contractamount,rewardrule,bonuses,remark,regtime,status,oppname
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="opprecommendid != null" >
+	    and opprecommendid =  #{opprecommendid}
+	</if>
+	<if test="userid != null" >
+	    and userid =  #{userid}
+	</if>
+	 	<if test="title != null and title != ''" >
+	    and title =  #{title}
+	</if>
+	<if test="contractamount != null" >
+	    and contractamount =  #{contractamount}
+	</if>
+	<if test="rewardrule != null" >
+	    and rewardrule =  #{rewardrule}
+	</if>
+	<if test="bonuses != null" >
+	    and bonuses =  #{bonuses}
+	</if>
+	 	<if test="remark != null and remark != ''" >
+	    and remark =  #{remark}
+	</if>
+	<if test="regtime != null" >
+	    and regtime =  #{regtime}
+	</if>
+	<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<if test="oppname != null and oppname != ''">
+		and oppname = #{oppname}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into st_opportunities_cooperation(id,opprecommendid,userid,title,contractamount,rewardrule,bonuses,remark,regtime,status,oppname)
+ values(#{id},#{opprecommendid},#{userid},#{title},#{contractamount},#{rewardrule},#{bonuses},#{remark},now(),1,#{oppname})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update st_opportunities_cooperation set opprecommendid=#{opprecommendid},userid=#{userid},title=#{title},contractamount=#{contractamount},rewardrule=#{rewardrule},bonuses=#{bonuses},remark=#{remark},regtime=#{regtime},status=#{status},oppname=#{oppname} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update st_opportunities_cooperation set 
+	<trim  suffixOverrides="," >
+	<if test="opprecommendid != null  ">
+		opprecommendid=#{opprecommendid},
+	</if>
+	<if test="userid != null  ">
+		userid=#{userid},
+	</if>
+	<if test="title != null  and title != '' ">
+		title=#{title},
+	</if>
+	<if test="contractamount != null  ">
+		contractamount=#{contractamount},
+	</if>
+	<if test="rewardrule != null  ">
+		rewardrule=#{rewardrule},
+	</if>
+	<if test="bonuses != null  ">
+		bonuses=#{bonuses},
+	</if>
+	<if test="remark != null  and remark != '' ">
+		remark=#{remark},
+	</if>
+	<if test="regtime != null  ">
+		regtime=#{regtime},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	<if test="oppname != null and oppname != ''">
+		oppname=#{oppname},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 1未确认，2确认未合作，3确认合作未回款，4已回款 -->
+<!-- 确认合作 -->
+<update id="confirmCooperation" parameterType="Object">
+	update st_opportunities_cooperation set status=3 where id = #{id}
+</update>
+
+<!-- 确认未合作 -->
+<update id="confirmNotCooperation" parameterType="Object">
+	update st_opportunities_cooperation set status=2 where id = #{id}
+</update>
+
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from st_opportunities_cooperation where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 商机合作表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from st_opportunities_cooperation where id = #{id}
+</select>
+
+
+<!-- 商机合作表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from st_opportunities_cooperation 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询商机合作表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from st_opportunities_cooperation 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

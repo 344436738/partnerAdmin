@@ -1,0 +1,531 @@
+/*预定义颜色*/
+@border-color-blue: #269edb;
+@border-color-orange: #f99543;
+/*预定义颜色*/
+
+/*预定义CSS*/
+.noWrap {
+  word-break: keep-all; /* 不换行 **/
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+/*预定义CSS*/
+
+/*修改左侧样式*/
+.mainLeft {
+  .leftList {
+    background: #fafafa;
+    a {
+      background-image: url(../images/leftIconP.png);
+      background-repeat: no-repeat;
+      &.income {
+        background-position: 35px -34px;
+      }
+      &.opportunities {
+        background-position: 35px -84px;
+      }
+      &.vitae {
+        background-position: 35px -184px;
+      }
+      &.golds {
+        background-position: 35px -284px;
+      }
+      &.active, &:hover, &.active:hover {
+        background-color: #fff;
+        color: @border-color-blue;
+      }
+    }
+  }
+}
+
+/*修改左侧样式*/
+
+/****个人首页开始****/
+.indexPage {
+  height: 830px;
+  background: url(../images/indexBgP.png) no-repeat center center;
+  background-size: 100% 100%;
+  .blackBg {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .35);
+    position: relative;
+  }
+  .header {
+    height: 90px;
+    .logo {
+      cursor: default;
+      padding: 0 20px;
+      font-size: 24px;
+      line-height: 90px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .menuList {
+      li {
+        float: left;
+        margin-left: 20px;
+      }
+      a {
+        color: #fff;
+        display: block;
+        padding: 0 20px;
+        margin: 0 40px;
+        line-height: 90px;
+        font-size: 20px;
+        &:hover {
+          color: @border-color-blue;
+        }
+      }
+      .logins {
+        color: #fff;
+        a {
+          margin: 0;
+          line-height: 82px;
+          height: 88px;
+          padding: 0;
+          font-size: 14px;
+          display: inline-block;
+          &:hover {
+            color: @border-color-blue;
+          }
+        }
+      }
+    }
+  }
+  .content {
+    width: 100%;
+    .main {
+      padding: 100px;
+      padding-left: 130px;
+      .titleImg {
+        width: 492px;
+        height: 168px;
+        margin-bottom: 50px;
+        background: url(../images/indexTxt2.png) no-repeat left center;
+      }
+      a {
+        display: block;
+        height: 35px;
+        padding-left: 40px;
+        line-height: 30px;
+        color: #fff;
+        font-size: 24px;
+        background: url(../images/right.png) no-repeat left 1px;
+      }
+    }
+  }
+  .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(211, 217, 237, .6);
+    padding: 50px;
+    .media {
+      .circleBox {
+        display: block;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        margin-left: 30px;
+        margin-right: 10px;
+        background-color: @border-color-blue;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+      .shangji {
+        background-image: url(../images/shangjiIcon.png);
+      }
+      .jianli {
+        background-image: url(../images/jianliIcon.png);
+      }
+      .media-body {
+        line-height: 105px;
+        font-size: 24px;
+        span {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}
+
+/****个人首页结束****/
+
+/*****收益情况*****/
+.incomeSituationPage {
+  .mainPanel {
+    margin: 20px 0;
+    background: #fafafa;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 4px;
+  }
+  h2.mainTotal {
+    font-size: 30px;
+  }
+  .tabTitle {
+    margin: 20px 0;
+    li {
+      float: left;
+      width: 120px;
+      height: 46px;
+      line-height: 45px;
+      font-size: 16px;
+      font-weight: bold;
+      background: #e0e0e0;
+      text-align: center;
+      color: #636363;
+      cursor: pointer;
+      border-top: 1px solid transparent;
+      &.active {
+        color: #333333;
+        background: transparent;
+        border-color: #f99543;
+        cursor: default;
+      }
+    }
+  }
+  .wd740 {
+    width: 740px;
+    margin: 0 auto;
+  }
+  .wd300 {
+    width: 300px;
+    margin: 0 auto;
+  }
+  .imgBox {
+    display: none;
+    .blueBox {
+      display: block;
+      width: 120px;
+      height: 120px;
+      margin: 20px auto;
+      border-radius: 50%;
+      background: @border-color-blue;
+      padding: 10px;
+      color: #fff;
+      > div {
+        height: 50px;
+        line-height: 49px;
+        overflow: hidden;
+        font-size: 18px;
+      }
+      .topTxt {
+        border-bottom: 1px solid #93cfed;
+        font-size: 16px;
+      }
+    }
+    .nextIcon {
+      width: 40px;
+      height: 60px;
+      margin: 0 auto;
+      background: url(../images/nextIcon.png) no-repeat center center;
+    }
+    .progressBox {
+      position: relative;
+      margin: 20px 0;
+      height: 150px;
+      background: url(../images/tuoyuan.png) no-repeat center 20px;
+      .orangeBox {
+        width: 74px;
+        height: 74px;
+        margin: 0 auto 50px;
+        border-radius: 50%;
+        background-color: @border-color-orange;
+        background-image: url(../images/orangeIcons.png);
+        background-repeat: no-repeat;
+        &.center {
+          position: relative;
+          top: 30px;
+        }
+        &.icon1 {
+          background-position:16px  16px;
+        }
+        &.icon2 {
+          background-position:16px  -83px;
+        }
+        &.icon3 {
+          background-position:16px  -183px;
+        }
+        &.icon4 {
+          background-position:16px  -283px;
+        }
+        &.icon5 {
+          background-position:16px  -383px;
+        }
+        &.icon6 {
+          background-position:16px  -483px;
+        }
+        &.icon7 {
+          background-position:16px  -583px;
+        }
+      }
+      > .fl {
+        width: 33.33%;
+        a {
+          display: block;
+        }
+      }
+      .total {
+        font-size: 16px;
+        span {
+          font-size: 12px;
+        }
+      }
+    }
+    .equalIcon {
+      width: 10px;
+      text-align: center;
+      line-height: 120px;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 20px 20px;
+    }
+    .tipTxt{
+      margin: 20px 0;
+      padding: 20px 0;
+      border-top: 1px dashed #ccc;
+    }
+    .btnGroup{
+      margin: 20px 0;
+      .button{
+        text-align: center;
+        min-width: 100px;
+      }
+    }
+  }
+  .listBox{
+    background: #fff;
+    padding: 20px;
+    .button{
+      min-width: 160px;
+    }
+    h5.fl{
+      line-height: 34px;
+      font-weight: bold;
+    }
+    .tableBox{
+      margin:0 3px 0 2px;
+      border: 1px solid #ccc;
+      border-bottom: 0;
+      &.table6{
+        li>div{
+          width: 147px;
+        }
+      }
+      &.table7{
+        li>div{
+          width: 126px;
+        }
+      }
+      &.table10{
+        margin: 0 3px 0 4px;
+        li>div{
+          width: 88px;
+        }
+      }
+      li{
+        &:after {
+          visibility: hidden;
+          display: block;
+          font-size: 0;
+          content: " ";
+          clear: both;
+          height: 0;
+        }
+        >div{
+          float: left;
+          height: 40px;
+          line-height: 39px;
+          border-bottom: 1px solid #ccc;
+          background: #fff;
+          text-align: center;
+          .noWrap;
+        }
+        &.title{
+          >div{
+            font-weight: bold;
+            background: #ebebeb;
+          }
+        }
+      }
+    }
+    .pagination{
+      margin: 20px 0 0;
+    }
+  }
+}
+
+/*****收益情况*****/
+
+/*****商机推荐******/
+.businessRecommendPage{
+  .firstPage{
+    display: none;
+    .wd720{
+      width: 720px;
+      margin: 20px 0 40px;
+      .line{
+        margin-bottom: 20px;
+      }
+      .x2{
+        line-height: 34px;
+        text-align: right;
+      }
+      .x10{
+        padding-left: 6px;
+        line-height: 34px;
+        label{
+          margin-right: 10px;
+        }
+        select{
+          font-size: 14px;
+          padding: 6px;
+          border: solid 1px #ddd;
+          width: 100%;
+          height: 34px;
+          line-height: 20px;
+          display: block;
+          border-radius: 4px;
+          box-shadow: 0 1px 1px rgba(0,0,0,0.075) inset;
+          transition: all 1s cubic-bezier(0.175,0.885,0.32,1) 0s;
+        }
+        .blue{
+          color: @border-color-blue;
+          font-size: 12px;
+        }
+      }
+    }
+    .btnGroup{
+      border-top: 1px dashed #ccc;
+      padding: 20px;
+      .button{
+        text-align: center;
+        min-width: 100px;
+      }
+    }
+  }
+  .secondPage{
+    display: none;
+    .searchBox{
+      margin: 20px 0;
+      position: relative;
+      .input{
+        background: #fffaee;
+        border-color: @border-color-orange;
+      }
+      .button{
+        position: absolute;
+        top:0;
+        right:0;
+        background: #fffaee;
+        border-color: @border-color-orange;
+      }
+    }
+    .total{
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+      .fl{
+        font-weight: bold;
+      }
+    }
+    .companyList{
+      li{
+        padding: 20px 0;
+        border-bottom: 1px dashed #ccc;
+        &.last{
+          border: 0;
+        }
+      }
+      .media{
+        position: relative;
+        font-size: 12px;
+        .float-left{
+          img{
+            width: 160px;
+            height: 100px;
+          }
+        }
+        .media-body{
+          padding: 10px 0;
+          .title{
+            font-size: 14px;
+            margin-bottom: 10px;
+          }
+          .txts{
+            color: #636363;
+            margin-bottom: 10px;
+          }
+          .starBox{
+            color: #969696;
+            .starBg{
+              width: 80px;
+              height: 14px;
+              background: url(../images/starBottom.png) no-repeat left center;
+            }
+            .star{
+              width: 50%;
+              height: 14px;
+              background: url(../images/starTop.png) no-repeat left center;
+            }
+          }
+          .button{
+            position: absolute;
+            top:23px;
+            right:0;
+          }
+        }
+      }
+    }
+    .pageBottom{
+      width: 410px;
+      margin: 0 auto;
+      padding: 20px 0;
+      border-top:1px dashed #ccc;
+      .fl{
+        display: inline-block;
+        margin-right: 5px;
+        input{
+          width: 80px;
+        }
+      }
+      .verification{
+
+      }
+    }
+    .btnGroup{
+      margin-bottom: 20px;
+      .button{
+        min-width: 100px;
+        text-align: center;
+        margin: 0 5px;
+      }
+    }
+  }
+  .tipPage{
+    .success{
+      width: 320px;
+      margin: 80px auto 20px;
+      height: 126px;
+      padding-left: 125px;
+      line-height: 126px;
+      background: url(../images/success.png) no-repeat left center;
+    }
+    .blue{
+      color: @border-color-blue;
+    }
+    .btnGroup{
+      margin: 100px 0;
+      .button{
+        min-width: 100px;
+        text-align: center;
+      }
+    }
+  }
+}
+/*******商机推荐******/
+
